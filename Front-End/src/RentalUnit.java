@@ -3,9 +3,9 @@ public class RentalUnit {
     private float price;
     private int bedrooms;
     private Boolean rentFlag;
-    private int rentalID;
+    private String rentalID;
 
-    public RentalUnit(String city, float price, int bedrooms, Boolean rentFlag, int rentalID){
+    public RentalUnit(String city, float price, int bedrooms, Boolean rentFlag, String rentalID){
         this.city = city;
         this.price = price;
         this.bedrooms = bedrooms;
@@ -16,5 +16,5 @@ public class RentalUnit {
     public float getPrice(){return price;}
     public int getRooms(){return bedrooms;}
     public Boolean getRentFlag(){return rentFlag;}
-    public int getRentalID(){return rentalID;}
+    public String getRentalID(){return rentalID;}
 }

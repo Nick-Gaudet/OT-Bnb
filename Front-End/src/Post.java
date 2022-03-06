@@ -1,11 +1,13 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Post {
 
-    String city;
-    float price;
-    int bedrooms;
-    boolean rentFlag;
+    private String city;
+    private float price;
+    private int bedrooms;
+    private boolean rentFlag;
+    private RentalUnit newUnit;
 
     public Post(String city , float price , int bedrooms, boolean rentFlag){
         // Handle Constraints
@@ -26,9 +28,18 @@ public class Post {
         this.city =city;
         this.price = price;
         this.rentFlag = rentFlag;
-    }
 
-    public void post(){
+        //create a new rental unit to store
 
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+
+        StringBuilder iD = new StringBuilder(15);
+        for (int i = 0; i < 15; i++) { // generate a random alpha numeric ID
+            iD.append(alphabet.charAt(random.nextInt(alphabet.length())));
+        }
+
+        this.newUnit = new RentalUnit(city,price,bedrooms,rentFlag,iD.toString());
     }
+    public RentalUnit getRentalUnit(){return this.newUnit;}
 }
