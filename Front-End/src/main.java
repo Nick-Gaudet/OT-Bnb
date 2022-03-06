@@ -19,6 +19,7 @@ public class main {
             numBedrooms = 9;
         }
     }
+    public void 
     public static void main(String[] args){
         System.out.println("Hello World!");
     }
