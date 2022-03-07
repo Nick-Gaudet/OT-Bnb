@@ -5,6 +5,7 @@ public class RentalUnit {
     private Boolean rentFlag;
     private String rentalID;
 
+    //creates RentalUnit class, assigns values
     public RentalUnit(String city, float price, int bedrooms, Boolean rentFlag, String rentalID){
         this.city = city;
         this.price = price;
@@ -12,6 +13,7 @@ public class RentalUnit {
         this.rentFlag = rentFlag;
         this.rentalID = rentalID;
     }
+    //getter and setters for each variable in class
     public String getCity(){return city;}
     public float getPrice(){return price;}
     public int getRooms(){return bedrooms;}

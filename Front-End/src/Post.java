@@ -5,6 +5,13 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * This class handles each listing in the OT-Bnb system.
+ * There are safeguards for price limits, city name length,
+ * and bedroom amount.
+ * This class should output an alphanumeric ID to a text file,
+ * leaving it for future manipulation.
+ */
 public class Post {
 
     private String city;

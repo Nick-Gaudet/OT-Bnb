@@ -31,7 +31,7 @@ public class main {
             e.printStackTrace();
         }
     }
-    public static boolean login(){
+    public static boolean login(){  //searches username database, returns true if username found
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter UserName:  ");
         String userName = scan.nextLine();
@@ -59,7 +59,7 @@ public class main {
 
     }
 
-    public static void rent(){
+    public static void rent(){  //allows for rent-standard and admin accounts to rent listing
 
     }
     public static void main(String[] args) throws IOException {
