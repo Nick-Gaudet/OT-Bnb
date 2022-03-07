@@ -1,16 +1,15 @@
 
 import java.io.*;
 import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class main {
 
     private static HashMap<String, String> userAccountsFromFile = new HashMap<String, String>();
     private static HashMap<String, RentalUnit> rentalUnitsMap = new HashMap<String, RentalUnit>();
-    private static HashSet rentalUnits = new HashSet();
+    private static ArrayList<RentalUnit> rentalUnits = new ArrayList<>();
+    private static ArrayList<User> userAccounts = new ArrayList<>();
+
 
     public void writeToTransactionFile(String line, RentalUnit unit, User user, String transactionID){
         try {
@@ -43,7 +42,7 @@ public class main {
     public static HashMap getRentalUnitsMap(){
         return rentalUnitsMap;
     }
-    public static HashSet getRentalUnitsList(){
+    public static ArrayList getRentalUnitsList(){
         return rentalUnits;
     }
     public static void loadUserAccounts(){ // load user accounts from file and put into hash map
@@ -54,6 +53,8 @@ public class main {
                 String [] userInfo = line.split("_");
                 // USER NAME STORED IN userInfo[0]
                 // USER PRIVILEGES STORED IN userInfo[1]
+                User u = new User(userInfo[0], userInfo[1]);
+                userAccounts.add(u);
                 getUserAccounts().put(userInfo[0], userInfo[1]);
             }
         } catch (FileNotFoundException e) {
@@ -63,7 +64,6 @@ public class main {
         }
     }
     public static void loadRentalUnits(){
-        rentalUnitsMap.clear();
         File file = new File("Front-End/resources/rentalunits.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath()))) {
             String line;
@@ -72,7 +72,7 @@ public class main {
                 // RENTAL ID IN userInfo[0]
                 // OTHER RENTAL INFO userInfo[1 - 6]
                 boolean flag = false;
-                if(userInfo[3].equals("T")){
+                if(userInfo[5].equals("T")){
                     flag = true;
                 }
                 RentalUnit newUnit = new RentalUnit(userInfo[0] ,userInfo[1],userInfo[2],Integer.parseInt(userInfo[3])
@@ -87,9 +87,9 @@ public class main {
             e.printStackTrace();
         }
     }
-    public static void populateRentalFile(){ // populates rentalunits file with any updated units made in transaction
+    public static void populateFile(File file , ArrayList items){ // populates rentalunits file with any updated units made in transaction
         try {
-            File file = new File("Front-End/resources/rentalunits.txt");
+//            File file = new File("Front-End/resources/rentalunits.txt");
             BufferedWriter bw = null;
             if(!file.exists()){
                 file.createNewFile();
@@ -99,8 +99,9 @@ public class main {
 
             FileWriter fw = new FileWriter(file, true);
             bw = new BufferedWriter(fw);
-            for(Object u : rentalUnits){
+            for(Object u : items){
                 bw.write(u.toString()); // write the rental unit details to the file
+                bw.write("\n");
             }
 
 
@@ -150,8 +151,30 @@ public class main {
 
 //            loadRentalUnits();
 
-            populateRentalFile();
+            populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
         }
+    }
+    public static void delete(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter User Name: ");
+        String userName = scan.nextLine();
+
+        for(User i : userAccounts){ // delete the user name from the file
+            if(i.getUserName().equals(userName)){
+                userAccounts.remove(i);
+            }
+        }
+        populateFile(new File("Front-End/resources/accounts.txt"), userAccounts);
+
+        for(RentalUnit i : rentalUnits){
+            if(i.getUserName().equals(userName)){
+                rentalUnits.remove(i);
+            }
+        }
+
+        populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
+
+
     }
     public static void main(String[] args) throws IOException {
         loadUserAccounts();
@@ -161,9 +184,9 @@ public class main {
         DecimalFormat df = new DecimalFormat("#000000.00");
 
         System.out.println(df.format(122));
-        User u = new User("NickG" , "FS");
-        Post p = new Post("Toronto" , 99.99f, 4, false, u);
-        System.out.println(p.getRentalUnit().getRentalID());
+//        User u = new User("NickG" , "FS");
+//        Post p = new Post("Toronto" , 99.99f, 4, false, u);
+//        System.out.println(p.getRentalUnit().getRentalID());
         login();
         rent();
     }

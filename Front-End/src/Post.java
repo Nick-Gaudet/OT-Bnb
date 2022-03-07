@@ -63,6 +63,7 @@ public class Post {
         bw = new BufferedWriter(fw);
 
         bw.write(this.newUnit.toString()); // write the rental unit details to the file
+        bw.write("\n");
 
         bw.close();
 

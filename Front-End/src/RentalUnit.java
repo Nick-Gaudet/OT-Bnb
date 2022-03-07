@@ -23,6 +23,8 @@ public class RentalUnit {
     public int getRooms(){return bedrooms;}
     public String getRentFlag(){return rentFlag;}
     public String getRentalID(){return rentalID;}
+    public String getUserName(){return userName;}
+
     public void setRentFlag(boolean rentFlag){
         if (rentFlag){
             this.rentFlag = "T";
@@ -32,5 +34,5 @@ public class RentalUnit {
         }
     }
     public String toString(){return this.rentalID + "_" + this.userName + "_" + this.city + "_" + this.bedrooms + "_"
-    + this.price + "_" + this.rentFlag + "_" + this.nightsRemaining + "\n";}
+    + this.price + "_" + this.rentFlag + "_" + this.nightsRemaining;}
 }
