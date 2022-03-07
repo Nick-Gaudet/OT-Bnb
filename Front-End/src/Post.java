@@ -51,7 +51,7 @@ public class Post {
             iD.append(alphabet.charAt(random.nextInt(alphabet.length())));
         }
 
-        this.newUnit = new RentalUnit(city,price,bedrooms,rentFlag,iD.toString(), user.getUserName(),10);
+        this.newUnit = new RentalUnit(iD.toString(),user.getUserName(),city,bedrooms,price,rentFlag,10);
 
         File file = new File("Front-End/resources/rentalunits.txt");
         BufferedWriter bw = null;

@@ -2,13 +2,15 @@
 import java.io.*;
 import java.text.DecimalFormat;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 public class main {
 
     private static HashMap<String, String> userAccountsFromFile = new HashMap<String, String>();
-    private static HashMap<String, String[]> rentalUnitsFromFile = new HashMap<String, String[]>();
-
+    private static HashMap<String, RentalUnit> rentalUnitsMap = new HashMap<String, RentalUnit>();
+    private static HashSet rentalUnits = new HashSet();
 
     public void writeToTransactionFile(String line, RentalUnit unit, User user, String transactionID){
         try {
@@ -38,8 +40,11 @@ public class main {
     public static HashMap getUserAccounts(){
         return userAccountsFromFile;
     }
-    public static HashMap getRentalUnits(){
-        return rentalUnitsFromFile;
+    public static HashMap getRentalUnitsMap(){
+        return rentalUnitsMap;
+    }
+    public static HashSet getRentalUnitsList(){
+        return rentalUnits;
     }
     public static void loadUserAccounts(){ // load user accounts from file and put into hash map
         File file = new File("Front-End/resources/accounts.txt");
@@ -58,6 +63,7 @@ public class main {
         }
     }
     public static void loadRentalUnits(){
+        rentalUnitsMap.clear();
         File file = new File("Front-End/resources/rentalunits.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath()))) {
             String line;
@@ -65,13 +71,41 @@ public class main {
                 String [] userInfo = line.split("_");
                 // RENTAL ID IN userInfo[0]
                 // OTHER RENTAL INFO userInfo[1 - 6]
-                String [] rentalInfo = {userInfo[1],userInfo[2],userInfo[3],userInfo[4],userInfo[5],userInfo[6]};
-                rentalUnitsFromFile.put(userInfo[0], rentalInfo); // store by ID, each containing array thats holds
+                boolean flag = false;
+                if(userInfo[3].equals("T")){
+                    flag = true;
+                }
+                RentalUnit newUnit = new RentalUnit(userInfo[0] ,userInfo[1],userInfo[2],Integer.parseInt(userInfo[3])
+                                            ,Float.parseFloat(userInfo[4]),flag,Integer.parseInt(userInfo[6]));
+                rentalUnits.add(newUnit);
+                rentalUnitsMap.put(userInfo[0], newUnit); // store by ID, each containing array thats holds
                                                                     // rental unit data
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void populateRentalFile(){ // populates rentalunits file with any updated units made in transaction
+        try {
+            File file = new File("Front-End/resources/rentalunits.txt");
+            BufferedWriter bw = null;
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            file.delete();
+            file.createNewFile();
+
+            FileWriter fw = new FileWriter(file, true);
+            bw = new BufferedWriter(fw);
+            for(Object u : rentalUnits){
+                bw.write(u.toString()); // write the rental unit details to the file
+            }
+
+
+            bw.close();
+        }catch(IOException e){
             e.printStackTrace();
         }
     }
@@ -109,6 +143,15 @@ public class main {
         String unitID = scan.nextLine();
         System.out.println("Enter # of nights: ");
         String numNights = scan.nextLine();
+
+        if(rentalUnitsMap.containsKey(unitID)){ // if the rental unit exists
+            RentalUnit unitToRent = rentalUnitsMap.get(unitID);
+            unitToRent.setRentFlag(true);
+
+//            loadRentalUnits();
+
+            populateRentalFile();
+        }
     }
     public static void main(String[] args) throws IOException {
         loadUserAccounts();
@@ -122,6 +165,7 @@ public class main {
         Post p = new Post("Toronto" , 99.99f, 4, false, u);
         System.out.println(p.getRentalUnit().getRentalID());
         login();
+        rent();
     }
 
 

@@ -8,16 +8,11 @@ public class RentalUnit {
     private int nightsRemaining;
 
     //creates RentalUnit class, assigns values
-    public RentalUnit(String city, float price, int bedrooms, boolean rentFlag, String rentalID , String userName , int nightsRemaining){
+    public RentalUnit(String rentalID, String userName, String city, int bedrooms, float price, boolean rentFlag, int nightsRemaining){
         this.city = city;
         this.price = price;
         this.bedrooms = bedrooms;
-        if (rentFlag){
-            this.rentFlag = "T";
-        }
-        else{
-            this.rentFlag = "F";
-        }
+        setRentFlag(rentFlag);
         this.rentalID = rentalID;
         this.userName = userName;
         this.nightsRemaining = nightsRemaining;
@@ -28,6 +23,14 @@ public class RentalUnit {
     public int getRooms(){return bedrooms;}
     public String getRentFlag(){return rentFlag;}
     public String getRentalID(){return rentalID;}
+    public void setRentFlag(boolean rentFlag){
+        if (rentFlag){
+            this.rentFlag = "T";
+        }
+        else{
+            this.rentFlag = "F";
+        }
+    }
     public String toString(){return this.rentalID + "_" + this.userName + "_" + this.city + "_" + this.bedrooms + "_"
     + this.price + "_" + this.rentFlag + "_" + this.nightsRemaining + "\n";}
 }
