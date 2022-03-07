@@ -154,6 +154,18 @@ public class main {
             populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
         }
     }
+
+    /*
+    public static void search(){  //allows for rent-standard and admin accounts to rent listing
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter a city ");
+        String cityFilter = scan.nextLine();
+
+        List<String> filtered = rentalUnits.stream()
+        .filter(string -> string.contains(cityFilter))
+        .collect(Collectors.toList());
+    }*/
+
     public static void delete(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter User Name: ");
@@ -169,6 +181,7 @@ public class main {
 
 
     }
+
     public static void main(String[] args) throws IOException {
         loadUserAccounts();
         loadRentalUnits();
@@ -183,6 +196,7 @@ public class main {
         login();
         rent();
         delete();
+//        search();
     }
 
 
