@@ -159,18 +159,11 @@ public class main {
         System.out.println("Enter User Name: ");
         String userName = scan.nextLine();
 
-        for(User i : userAccounts){ // delete the user name from the file
-            if(i.getUserName().equals(userName)){
-                userAccounts.remove(i);
-            }
-        }
+        // delete the user name from the file
+        userAccounts.removeIf(i -> i.getUserName().equals(userName));
         populateFile(new File("Front-End/resources/accounts.txt"), userAccounts);
 
-        for(RentalUnit i : rentalUnits){
-            if(i.getUserName().equals(userName)){
-                rentalUnits.remove(i);
-            }
-        }
+        rentalUnits.removeIf(i -> i.getUserName().equals(userName));
 
         populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
 
@@ -189,6 +182,7 @@ public class main {
 //        System.out.println(p.getRentalUnit().getRentalID());
         login();
         rent();
+        delete();
     }
 
 
