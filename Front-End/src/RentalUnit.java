@@ -17,4 +17,6 @@ public class RentalUnit {
     public int getRooms(){return bedrooms;}
     public Boolean getRentFlag(){return rentFlag;}
     public String getRentalID(){return rentalID;}
+    public String toString(){return this.rentalID + "/" + this.price + "/" + this.bedrooms + "/" + this.rentFlag + "/"
+    + this.rentalID;}
 }

@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,7 +13,7 @@ public class Post {
     private boolean rentFlag;
     private RentalUnit newUnit;
 
-    public Post(String city , float price , int bedrooms, boolean rentFlag){
+    public Post(String city , float price , int bedrooms, boolean rentFlag) throws IOException {
         // Handle Constraints
         Scanner scan = new Scanner(System.in);
         if (price > 999.99){
@@ -40,6 +44,21 @@ public class Post {
         }
 
         this.newUnit = new RentalUnit(city,price,bedrooms,rentFlag,iD.toString());
+
+        File file = new File("Front-End/resources/rentalunits.txt");
+        BufferedWriter bw = null;
+        if(!file.exists()){
+            file.createNewFile();
+        }
+
+        FileWriter fw = new FileWriter(file,true);
+        bw = new BufferedWriter(fw);
+
+        bw.write(this.newUnit.toString()); // write the rental unit details to the file
+
+        bw.close();
+
+
     }
     public RentalUnit getRentalUnit(){return this.newUnit;}
 }

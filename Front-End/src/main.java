@@ -1,5 +1,6 @@
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public class main {
         try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath()))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String [] userInfo = line.split("/");
+                String [] userInfo = line.split("_");
                 // USER NAME STORED IN userInfo[0]
                 // USER PRIVILEGES STORED IN userInfo[1]
                 getUserAccounts().put(userInfo[0], userInfo[1]);
@@ -57,9 +58,16 @@ public class main {
         }
 
     }
-    public static void main(String[] args){
+
+    public static void rent(){
+
+    }
+    public static void main(String[] args) throws IOException {
         loadUserAccounts();
         System.out.println("Hello World!");
+        DecimalFormat df = new DecimalFormat("#000000.00");
+
+        System.out.println(df.format(122));
         Post p = new Post("Toronto" , 99.99f, 4, false);
         System.out.println(p.getRentalUnit().getRentalID());
         login();
