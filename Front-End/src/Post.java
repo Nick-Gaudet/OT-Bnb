@@ -19,8 +19,8 @@ public class Post {
     private int bedrooms;
     private boolean rentFlag;
     private RentalUnit newUnit;
-
-    public Post(String city , float price , int bedrooms, boolean rentFlag) throws IOException {
+    private User user;
+    public Post(String city , float price , int bedrooms, boolean rentFlag, User user) throws IOException {
         // Handle Constraints
         Scanner scan = new Scanner(System.in);
         if (price > 999.99){
@@ -35,6 +35,7 @@ public class Post {
             System.out.println("Too many bedrooms! Defaulting to 9");
             bedrooms = 9;
         }
+        this.user = user;
         this.bedrooms = bedrooms;
         this.city =city;
         this.price = price;
@@ -50,7 +51,7 @@ public class Post {
             iD.append(alphabet.charAt(random.nextInt(alphabet.length())));
         }
 
-        this.newUnit = new RentalUnit(city,price,bedrooms,rentFlag,iD.toString());
+        this.newUnit = new RentalUnit(city,price,bedrooms,rentFlag,iD.toString(), user.getUserName(),10);
 
         File file = new File("Front-End/resources/rentalunits.txt");
         BufferedWriter bw = null;

@@ -57,6 +57,6 @@ public class User {
     }
 
     public String toString(){
-        return userName + "|" + privileges ;
+        return userName + "_" + privileges ;
     }
 }
