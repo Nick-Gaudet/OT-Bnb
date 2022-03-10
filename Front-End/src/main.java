@@ -10,7 +10,6 @@ public class main {
     private static ArrayList<RentalUnit> rentalUnits = new ArrayList<>();
     private static ArrayList<User> userAccounts = new ArrayList<>();
 
-
     public void writeToTransactionFile(String line, RentalUnit unit, User user, String transactionID){
         try {
             File file = new File("Front-End/resources/transaction_file.txt");
@@ -70,7 +69,7 @@ public class main {
         bw.close();
 
     }
-    public static HashMap getUserAccounts(){
+    public static HashMap getUserAccountsMap(){
         return userAccountsFromFile;
     }
     public static HashMap getRentalUnitsMap(){
@@ -89,7 +88,7 @@ public class main {
                 // USER PRIVILEGES STORED IN userInfo[1]
                 User u = new User(userInfo[0], userInfo[1]);
                 userAccounts.add(u);
-                getUserAccounts().put(userInfo[0], userInfo[1]);
+                getUserAccountsMap().put(userInfo[0], userInfo[1]);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -97,6 +96,7 @@ public class main {
             e.printStackTrace();
         }
     }
+
     public static void loadRentalUnits(){
         File file = new File("Front-End/resources/rentalunits.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath()))) {
@@ -148,7 +148,7 @@ public class main {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter UserName:  ");
         String userName = scan.nextLine();
-        if (getUserAccounts().containsKey(userName)){
+        if (getUserAccountsMap().containsKey(userName)){
             System.out.println("User Found, Logging In...");
             return true;
         }
@@ -164,14 +164,22 @@ public class main {
                 return true;
             }
             else if (answer.equalsIgnoreCase("yes")){
-                //create()
+                create();
                 return true;
             }
             return false;
         }
 
     }
+    public static boolean doesUsernameExist(String name){
 
+        for(User i : userAccounts){ // search all user accounts
+            if (name.equals(i.getUserName())){
+                return true;
+            }
+        }
+        return false;
+    }
     public static void rent(){  //allows for rent-standard and admin accounts to rent listing
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter Rental Unit ID: ");
@@ -214,7 +222,36 @@ public class main {
 
 
     }
+    public static void create(){
 
+        String userType;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter username for account: ");
+        String user = scan.nextLine();
+
+        if(!doesUsernameExist(user)) {
+            while (user.length() > 15) {
+                System.out.println("Enter a shorter username: ");
+                user = scan.nextLine();
+            }
+
+            System.out.println("Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS: ");
+            userType = scan.nextLine();
+
+            userAccounts.add(new User(user,userType));
+            populateFile(new File("Front-End/resources/accounts.txt"), userAccounts);
+
+            System.out.println("User Created Successfully!");
+
+
+        }
+        else{
+            System.out.println("Username exists!");
+            create();
+
+        }
+
+    }
     public static void main(String[] args) throws IOException {
         loadUserAccounts();
         loadRentalUnits();

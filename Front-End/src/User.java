@@ -22,6 +22,8 @@ public class User {
             canRent = false;
         }
 
+
+
     }
 
     public boolean canRent() {
