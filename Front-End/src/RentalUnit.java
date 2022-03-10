@@ -1,3 +1,9 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+
 public class RentalUnit {
     private String city;
     private float price;
@@ -35,4 +41,31 @@ public class RentalUnit {
     }
     public String toString(){return this.rentalID + "_" + this.userName + "_" + this.city + "_" + this.bedrooms + "_"
     + this.price + "_" + this.rentFlag + "_" + this.nightsRemaining;}
+
+    public void storeRental(RentalUnit r) throws IOException {
+        //create a new rental unit to store
+
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+
+        StringBuilder iD = new StringBuilder(15);
+        for (int i = 0; i < 15; i++) { // generate a random alpha numeric ID
+            iD.append(alphabet.charAt(random.nextInt(alphabet.length())));
+        }
+
+
+        File file = new File("Front-End/resources/rentalunits.txt");
+        BufferedWriter bw = null;
+        if(!file.exists()){
+            file.createNewFile();
+        }
+
+        FileWriter fw = new FileWriter(file,true);
+        bw = new BufferedWriter(fw);
+
+        bw.write(r.toString()); // write the rental unit details to the file
+        bw.write("\n");
+
+        bw.close();
+    }
 }

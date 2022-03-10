@@ -33,8 +33,42 @@ public class main {
             e.printStackTrace();
         }
     }
-    public boolean post(String city , float price, int bedrooms, boolean rentFlag){
-        return false;
+    public static void post(User u) throws IOException {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter a city: ");
+        String city = scan.nextLine();
+        System.out.println("Enter a rental price: ");
+        String price = scan.nextLine();
+        System.out.println("Enter the number of bedrooms: ");
+        String bedrooms = scan.nextLine();
+
+        //create a new rental unit to store
+
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+
+        //generate a random unit ID
+        StringBuilder iD = new StringBuilder(15);
+        for (int i = 0; i < 15; i++) { // generate a random alpha numeric ID
+            iD.append(alphabet.charAt(random.nextInt(alphabet.length())));
+        }
+
+        //create the rental unit for the post being made
+        RentalUnit r = new RentalUnit(iD.toString(),u.getUserName(), city, Integer.parseInt(bedrooms), Integer.parseInt(price), false, 14);
+        File file = new File("Front-End/resources/rentalunits.txt");
+        BufferedWriter bw = null;
+        if(!file.exists()){ // if the file doesnt exist yet
+            file.createNewFile();
+        }
+
+        FileWriter fw = new FileWriter(file,true);
+        bw = new BufferedWriter(fw);
+
+        bw.write(r.toString()); // write the rental unit details to the file
+        bw.write("\n");
+
+        bw.close();
+
     }
     public static HashMap getUserAccounts(){
         return userAccountsFromFile;
@@ -176,7 +210,6 @@ public class main {
         populateFile(new File("Front-End/resources/accounts.txt"), userAccounts);
 
         rentalUnits.removeIf(i -> i.getUserName().equals(userName));
-
         populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
 
 
@@ -190,12 +223,13 @@ public class main {
         DecimalFormat df = new DecimalFormat("#000000.00");
 
         System.out.println(df.format(122));
-//        User u = new User("NickG" , "FS");
+        User u = new User("NickG" , "FS");
 //        Post p = new Post("Toronto" , 99.99f, 4, false, u);
 //        System.out.println(p.getRentalUnit().getRentalID());
         login();
         rent();
         delete();
+        post(u);
 //        search();
     }
 
