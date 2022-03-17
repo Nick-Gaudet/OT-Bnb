@@ -10,6 +10,17 @@ public class main {
     private static ArrayList<RentalUnit> rentalUnits = new ArrayList<>();
     private static ArrayList<User> userAccounts = new ArrayList<>();
 
+    public static void help(){
+        System.out.print("List of commands:\n" +
+                            "login - Log into your account\n" +
+                            "logout - Log out of your account\n" +
+                            "post - Post a new rental unit (FS, PS)\n" +
+                            "rent - Rent a unit (FS, RS)\n" +
+                            "search - Search for an available rental unit\n" +
+                            "delete - Delete an existing user (FS)\n" +
+                            "create - Create a new user (FS) \n");
+    }
+
     public void writeToTransactionFile(String line, RentalUnit unit, User user, String transactionID){
         try {
             File file = new File("Front-End/resources/transaction_file.txt");
@@ -66,6 +77,7 @@ public class main {
         bw.write(r.toString()); // write the rental unit details to the file
         bw.write("\n");
 
+        scan.close();
         bw.close();
 
     }
@@ -121,7 +133,7 @@ public class main {
             e.printStackTrace();
         }
     }
-    public static void populateFile(File file , ArrayList items){ // populates rentalunits file with any updated units made in transaction
+    public static void populateFile(File file, ArrayList items){ // populates rentalunits file with any updated units made in transaction
         try {
 //            File file = new File("Front-End/resources/rentalunits.txt");
             BufferedWriter bw = null;
@@ -150,6 +162,7 @@ public class main {
         String userName = scan.nextLine();
         if (getUserAccountsMap().containsKey(userName)){
             System.out.println("User Found, Logging In...");
+            scan.close();
             return true;
         }
         else{
@@ -161,17 +174,25 @@ public class main {
 
             if (answer.equalsIgnoreCase("no")){
                 System.out.println("Redirecting...");
+                scan.close();
                 return true;
             }
             else if (answer.equalsIgnoreCase("yes")){
                 create();
+                scan.close();
                 return true;
             }
+            scan.close();
             return false;
         }
-
     }
-    public static boolean doesUsernameExist(String name){
+
+    public static void logout(User u){  //logs user out
+        //TODO: fully implement this
+        System.out.println("User logged out. Thank you for using OT-Bnb!");
+    }
+
+    public static Boolean doesUsernameExist(String name){
 
         for(User i : userAccounts){ // search all user accounts
             if (name.equals(i.getUserName())){
@@ -195,18 +216,18 @@ public class main {
 
             populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
         }
+        scan.close();
     }
 
-    /*
-    public static void search(){  //allows for rent-standard and admin accounts to rent listing
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter a city ");
-        String cityFilter = scan.nextLine();
+    // public static void search(){  //allows for rent-standard and admin accounts to rent listing
+    //     Scanner scan = new Scanner(System.in);
+    //     System.out.println("Enter a city ");
+    //     String cityFilter = scan.nextLine();
 
-        List<String> filtered = rentalUnits.stream()
-        .filter(string -> string.contains(cityFilter))
-        .collect(Collectors.toList());
-    }*/
+    //     List<String> filtered = rentalUnits.stream()
+    //     .filter(string -> string.contains(cityFilter))
+    //     .collect(Collectors.toList());
+    // }
 
     public static void delete(){
         Scanner scan = new Scanner(System.in);
@@ -220,7 +241,7 @@ public class main {
         rentalUnits.removeIf(i -> i.getUserName().equals(userName));
         populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
 
-
+        scan.close();
     }
     public static void create(){
 
@@ -242,7 +263,7 @@ public class main {
             populateFile(new File("Front-End/resources/accounts.txt"), userAccounts);
 
             System.out.println("User Created Successfully!");
-
+            scan.close();
 
         }
         else{
@@ -255,20 +276,52 @@ public class main {
     public static void main(String[] args) throws IOException {
         loadUserAccounts();
         loadRentalUnits();
-
-        System.out.println("Hello World!");
+        Scanner scan = new Scanner(System.in);
+        String comm;
+        Boolean on = true;
         DecimalFormat df = new DecimalFormat("#000000.00");
 
         System.out.println(df.format(122));
         User u = new User("NickG" , "FS");
 //        Post p = new Post("Toronto" , 99.99f, 4, false, u);
 //        System.out.println(p.getRentalUnit().getRentalID());
-        login();
-        rent();
-        delete();
-        post(u);
-//        search();
+        while (on){
+            System.out.println("Welcome to OT-Bnb. Please enter a command. (Type help for a list of commands)");
+            comm = scan.nextLine();
+            switch(comm.toLowerCase()){
+                case "help":
+                help();
+                break;
+
+                case "login":
+                login();
+                break;
+
+                case "logout":
+                logout(u);
+                on = !on;
+                break;
+
+                case "rent":
+                rent();
+                break;
+
+                case "delete":
+                delete();
+                break;
+
+                case "post":
+                post(u);
+                break;
+
+                case "search":
+                //search();
+                break;
+
+                default:
+                System.out.println("Invalid command! Type \"help\" for a list of commands.");
+            }
+        }
+        //scan.close();
     }
-
-
 }
