@@ -44,13 +44,34 @@ public class main {
         }
     }
     public static void post(User u) throws IOException {
+        String city,price,bedrooms;
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter a city: ");
-        String city = scan.nextLine();
+        city = scan.nextLine();
+
         System.out.println("Enter a rental price: ");
-        String price = scan.nextLine();
+        price = scan.nextLine();
+
         System.out.println("Enter the number of bedrooms: ");
-        String bedrooms = scan.nextLine();
+        bedrooms = scan.nextLine();
+
+
+        //CONSTRAINTS
+
+        if (Integer.parseInt(price) > 999.99){
+            price = "999.99";
+            System.out.println("Maximum amount per night is $999.99");
+        }
+
+        if (city.length() > 25){
+            city = city.substring(0,26);
+            System.out.println("City name too long! Shortening to " + city);
+        }
+
+        if (Integer.parseInt(bedrooms) > 9){
+            bedrooms = "9";
+            System.out.println("Max number of bedrooms is 9! Defaulting...");
+        }
 
         //create a new rental unit to store
 
@@ -64,7 +85,7 @@ public class main {
         }
 
         //create the rental unit for the post being made
-        RentalUnit r = new RentalUnit(iD.toString(),u.getUserName(), city, Integer.parseInt(bedrooms), Integer.parseInt(price), false, 14);
+        RentalUnit r = new RentalUnit(iD.toString(),u.getUserName(), city, Integer.parseInt(bedrooms), Float.parseFloat(price), false, 14);
         File file = new File("Front-End/resources/rentalunits.txt");
         BufferedWriter bw = null;
         if(!file.exists()){ // if the file doesnt exist yet
