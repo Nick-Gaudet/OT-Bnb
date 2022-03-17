@@ -230,10 +230,6 @@ public class main {
                 System.out.println(un);
             }
         }
-/*
-        List<String> filtered = rentalUnits.stream()
-        .filter(string -> string.contains(cityFilter))
-        .collect(Collectors.toList());*/
     }
 
     public static void delete(){
