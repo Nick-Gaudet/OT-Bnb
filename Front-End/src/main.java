@@ -223,11 +223,12 @@ public class main {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter a city ");
         String cityFilter = scan.nextLine();
+        scan.close();
 
         for(int i = 0; i < rentalUnits.size(); i++){
-            RentalUnit un = rentalUnits.get(i);
-            if(un.getCity().equals(cityFilter)){
-                System.out.println(un);
+            RentalUnit unit = rentalUnits.get(i);
+            if(unit.getCity().equals(cityFilter)){
+                System.out.println(unit);
             }
         }
     }
@@ -286,7 +287,7 @@ public class main {
 
         System.out.println(df.format(122));
         User u = new User("NickG" , "FS");
-//        Post p = new Post("Toronto" , 99.99f, 4, false, u);
+        Post p = new Post("Toronto" , 99.99f, 4, false, u);
 //        System.out.println(p.getRentalUnit().getRentalID());
         while (on){
             System.out.println("Welcome to OT-Bnb. Please enter a command. (Type help for a list of commands)");
