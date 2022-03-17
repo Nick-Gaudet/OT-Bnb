@@ -133,9 +133,8 @@ public class main {
             e.printStackTrace();
         }
     }
-    public static void populateFile(File file, ArrayList items){ // populates rentalunits file with any updated units made in transaction
+    public static void populateFile(File file, ArrayList items){ // populates file with any updated units made in transaction
         try {
-//            File file = new File("Front-End/resources/rentalunits.txt");
             BufferedWriter bw = null;
             if(!file.exists()){
                 file.createNewFile();
@@ -149,7 +148,6 @@ public class main {
                 bw.write(u.toString()); // write the rental unit details to the file
                 bw.write("\n");
             }
-
 
             bw.close();
         }catch(IOException e){
@@ -221,13 +219,22 @@ public class main {
 
     public static void search(){  //allows for rent-standard and admin accounts to rent listing
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter a city ");
+        System.out.println("Enter a city: ");
         String cityFilter = scan.nextLine();
 
+        System.out.println("Enter a rental price: ");
+        String rentalFilter = scan.nextLine();
+
+        System.out.println("Enter the number of bedrooms: ");
+        String numOfBedroomsFilter = scan.nextLine();
+
         for(int i = 0; i < rentalUnits.size(); i++){
-            RentalUnit un = rentalUnits.get(i);
-            if(un.getCity().equals(cityFilter)){
-                System.out.println(un);
+            RentalUnit unit = rentalUnits.get(i);
+            if(unit.getCity().equals(cityFilter) && unit.getPrice() == Float.parseFloat(rentalFilter) && unit.getRooms() == Integer.parseInt(numOfBedroomsFilter) && unit.getRentFlag().equalsIgnoreCase("F")){
+                System.out.println(unit);
+            }
+            else{
+                System.out.println("Unit Not Found!");
             }
         }
     }
@@ -254,6 +261,7 @@ public class main {
         String user = scan.nextLine();
 
         if(!doesUsernameExist(user)) {
+
             while (user.length() > 15) {
                 System.out.println("Enter a shorter username: ");
                 user = scan.nextLine();
