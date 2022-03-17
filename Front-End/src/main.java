@@ -251,7 +251,7 @@ public class main {
 
         for(int i = 0; i < rentalUnits.size(); i++){
             RentalUnit unit = rentalUnits.get(i);
-            if(unit.getCity().equals(cityFilter) && unit.getPrice() == Float.parseFloat(rentalFilter) && unit.getRooms() == Integer.parseInt(numOfBedroomsFilter) && unit.getRentFlag().equalsIgnoreCase("F")){
+            if((unit.getCity().equals(cityFilter)) && (unit.getPrice() <= Float.parseFloat(rentalFilter)) && (unit.getRooms() >= Integer.parseInt(numOfBedroomsFilter)) && (unit.getRentFlag().equalsIgnoreCase("F"))){
                 System.out.println(unit);
             }
             else{
