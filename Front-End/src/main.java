@@ -219,15 +219,22 @@ public class main {
         scan.close();
     }
 
-    // public static void search(){  //allows for rent-standard and admin accounts to rent listing
-    //     Scanner scan = new Scanner(System.in);
-    //     System.out.println("Enter a city ");
-    //     String cityFilter = scan.nextLine();
+    public static void search(){  //allows for rent-standard and admin accounts to rent listing
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter a city ");
+        String cityFilter = scan.nextLine();
 
-    //     List<String> filtered = rentalUnits.stream()
-    //     .filter(string -> string.contains(cityFilter))
-    //     .collect(Collectors.toList());
-    // }
+        for(int i = 0; i < rentalUnits.size(); i++){
+            RentalUnit un = rentalUnits.get(i);
+            if(un.getCity().equals(cityFilter)){
+                System.out.println(un);
+            }
+        }
+/*
+        List<String> filtered = rentalUnits.stream()
+        .filter(string -> string.contains(cityFilter))
+        .collect(Collectors.toList());*/
+    }
 
     public static void delete(){
         Scanner scan = new Scanner(System.in);
@@ -315,7 +322,7 @@ public class main {
                 break;
 
                 case "search":
-                //search();
+                search();
                 break;
 
                 default:
