@@ -1,3 +1,2 @@
-GYJ7R256YLSWC6P_NickG   _Toronto        _4_000678.34_F_14
-2J68PVZVP6FZWKT_NickG   _Tokyo          _2_000123.12_F_14
-D23ZXA0UENWVMSV_NickG   _Shanghai       _7_000456.44_F_14
+FKAOMYBL_NickG   _Toronto        _2_000034.00_F_14
+N3ALLBOM_NickG   _Manchester     _8_000003.00_F_14

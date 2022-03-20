@@ -4,7 +4,9 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 public class main {
+    //TODO: get file path to be Front-End/resources/ + args[n...]  for command line input on program load
 
+    //GLOBALS
     private static HashMap<String, String> userAccountsFromFile = new HashMap<String, String>();
     private static HashMap<String, RentalUnit> rentalUnitsMap = new HashMap<String, RentalUnit>();
     private static ArrayList<RentalUnit> rentalUnits = new ArrayList<>();
@@ -12,8 +14,7 @@ public class main {
     private static ArrayList<String> transactions = new ArrayList<>();
     private static User currentUser;
     private static RentalUnit rentalUnitForTransactionInfo;
-    private static boolean isLoggedIn;
-    //TODO: Finish handling any final constraints, delete any redundant/useless functions, and clean up
+
     public static void help(){
         System.out.print("List of commands:\n" +
                             "logout - Log out of your account\n" +
@@ -87,8 +88,8 @@ public class main {
         Random random = new Random();
 
         //generate a random unit ID
-        StringBuilder iD = new StringBuilder(15);
-        for (int i = 0; i < 15; i++) { // generate a random alpha numeric ID
+        StringBuilder iD = new StringBuilder(8);
+        for (int i = 0; i < 8; i++) { // generate a random alpha numeric ID
             iD.append(alphabet.charAt(random.nextInt(alphabet.length())));
         }
 
@@ -120,7 +121,8 @@ public class main {
     public static ArrayList getRentalUnitsList(){
         return rentalUnits;
     }
-    public static void loadUserAccounts(){ // load user accounts from file and put into hash map
+
+    public static void loadUserAccounts(){ // loads existing user accounts from file on Ot-Bnb launch then maps them
         File file = new File("Front-End/resources/accounts.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath()))) {
             String line;
@@ -142,7 +144,7 @@ public class main {
         }
     }
 
-    public static void loadRentalUnits(){
+    public static void loadRentalUnits(){ // loads existing rental units from file on Ot-Bnb launch then maps them
         File file = new File("Front-End/resources/rentalunits.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath()))) {
             String line;
@@ -169,6 +171,7 @@ public class main {
             e.printStackTrace();
         }
     }
+
     public static void populateFile(File file, ArrayList items){ // populates file with any updated units made in transaction
         try {
             BufferedWriter bw = null;
@@ -264,7 +267,7 @@ public class main {
         }
     }
 
-    public static void delete(){
+    public static void delete(){ // deletes the user from file and any units correlated, updates files as well
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter User Name: ");
         String userName = scan.nextLine();
@@ -277,7 +280,7 @@ public class main {
         populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
 
     }
-    public static void create(){
+    public static void create(){ // creates a new user account, updates the file as well
 
         String userType;
         Scanner scan = new Scanner(System.in);
@@ -311,7 +314,6 @@ public class main {
 
     }
     public static void main(String[] args) throws IOException {
-        isLoggedIn = false;
         loadUserAccounts();
         loadRentalUnits();
         Scanner scan = new Scanner(System.in);
@@ -400,6 +402,5 @@ public class main {
         transCode = "00";
         transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
         writeToTransactionFile();
-        //scan.close();
     }
 }
