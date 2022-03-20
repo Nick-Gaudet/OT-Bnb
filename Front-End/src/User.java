@@ -59,6 +59,6 @@ public class User {
     }
 
     public String toString(){
-        return String.format("%-8s_%s", userName,privileges) ;
+        return String.format("%-8s %s", userName,privileges) ;
     }
 }

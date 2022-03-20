@@ -26,7 +26,7 @@ public class main {
     }
     public static String makeTransactionString(String transCode, RentalUnit unit, User user){
         DecimalFormat df = new DecimalFormat("#000000.00");
-        return String.format("%s_%-8s_%s_%-8s_%-15s_%s_%s_%02d\n", transCode, user.getUserName(), user.getPrivileges(),
+        return String.format("%s %-8s %s %-8s %-15s %s %s %02d\n", transCode, user.getUserName(), user.getPrivileges(),
                 unit.getRentalID(), unit.getCity(), unit.getRooms(), df.format(unit.getPrice()),unit.getNightsRemaining());
     }
     public static void writeToTransactionFile(){
