@@ -23,6 +23,17 @@ public class RentalUnit {
         this.userName = userName;
         this.nightsRemaining = nightsRemaining;
     }
+
+    public RentalUnit(){
+        this.city = "";
+        this.price = 0.0f;
+        this.bedrooms = 0;
+        this.rentFlag = "F";
+        this.rentalID = "";
+        this.userName = "";
+        this.nightsRemaining = 0;
+    }
+
     //getter and setters for each variable in class
     public String getCity(){return city;}
     public float getPrice(){return price;}
@@ -30,6 +41,7 @@ public class RentalUnit {
     public String getRentFlag(){return rentFlag;}
     public String getRentalID(){return rentalID;}
     public String getUserName(){return userName;}
+    public int getNightsRemaining(){return nightsRemaining;}
 
     public void setRentFlag(boolean rentFlag){
         if (rentFlag){
@@ -39,8 +51,14 @@ public class RentalUnit {
             this.rentFlag = "F";
         }
     }
-    public String toString(){return this.rentalID + "_" + this.userName + "_" + this.city + "_" + this.bedrooms + "_"
-    + this.price + "_" + this.rentFlag + "_" + this.nightsRemaining;}
+    public String toString(){
+
+
+        return this.rentalID + "_" + this.userName + "_" + this.city + "_" + this.bedrooms + "_"
+    + this.price + "_" + this.rentFlag + "_" + this.nightsRemaining;
+
+
+    }
 
     public void storeRental(RentalUnit r) throws IOException {
         //create a new rental unit to store

@@ -9,10 +9,15 @@ public class main {
     private static HashMap<String, RentalUnit> rentalUnitsMap = new HashMap<String, RentalUnit>();
     private static ArrayList<RentalUnit> rentalUnits = new ArrayList<>();
     private static ArrayList<User> userAccounts = new ArrayList<>();
-
+    private static ArrayList<String> transactions = new ArrayList<>();
+    private static User currentUser;
+    private static RentalUnit rentalUnitForTransactionInfo;
+    private static boolean isLoggedIn;
+    //TODO: CREATE function only one without a rental unit tied to it, weirdly written to file
+    //TODO: Make a queue/list (STRING) for transactions in form XX_UUUUUUUUUU_TT_IIIIIIII_CCCCCCCCCCCCCCC_B_PPPPPP_NN, which will then be written to transaction file
+    //TODO: Finish handling any final constraints, delete any redundant/useless functions, and clean up
     public static void help(){
         System.out.print("List of commands:\n" +
-                            "login - Log into your account\n" +
                             "logout - Log out of your account\n" +
                             "post - Post a new rental unit (FS, PS)\n" +
                             "rent - Rent a unit (FS, RS)\n" +
@@ -20,8 +25,12 @@ public class main {
                             "delete - Delete an existing user (FS)\n" +
                             "create - Create a new user (FS) \n");
     }
-
-    public void writeToTransactionFile(String line, RentalUnit unit, User user, String transactionID){
+    public static String makeTransactionString(String transCode, RentalUnit unit, User user){
+        DecimalFormat df = new DecimalFormat("#000000.00");
+        return String.format("%s_%-8s_%s_%-8s_%-15s_%s_%s_%02d\n", transCode, user.getUserName(), user.getPrivileges(),
+                unit.getRentalID(), unit.getCity(), unit.getRooms(), df.format(unit.getPrice()),unit.getNightsRemaining());
+    }
+    public void writeToTransactionFile(){
         try {
             File file = new File("Front-End/resources/transaction_file.txt");
             BufferedWriter bw = null;
@@ -36,14 +45,14 @@ public class main {
             FileWriter fw = new FileWriter(file, true);
             bw = new BufferedWriter(fw);
 
-            bw.write(transactionID + "_" + user.toString() + "_" + unit.toString()); // write the transaction
+//            bw.write(); // write the transaction
 
             bw.close();
         }catch(IOException e){
             e.printStackTrace();
         }
     }
-    public static void post(User u) throws IOException {
+    public static void post() throws IOException {
         String city,price,bedrooms;
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter a city: ");
@@ -58,13 +67,13 @@ public class main {
 
         //CONSTRAINTS
 
-        if (Integer.parseInt(price) > 999.99){
+        if (Float.parseFloat(price) > 999.99){
             price = "999.99";
             System.out.println("Maximum amount per night is $999.99");
         }
 
         if (city.length() > 25){
-            city = city.substring(0,26);
+            city = city.substring(0,25);
             System.out.println("City name too long! Shortening to " + city);
         }
 
@@ -85,7 +94,9 @@ public class main {
         }
 
         //create the rental unit for the post being made
-        RentalUnit r = new RentalUnit(iD.toString(),u.getUserName(), city, Integer.parseInt(bedrooms), Float.parseFloat(price), false, 14);
+        RentalUnit r = new RentalUnit(iD.toString(),currentUser.getUserName(), city, Integer.parseInt(bedrooms), Float.parseFloat(price), false, 14);
+        rentalUnitForTransactionInfo = r;
+
         File file = new File("Front-End/resources/rentalunits.txt");
         BufferedWriter bw = null;
         if(!file.exists()){ // if the file doesnt exist yet
@@ -181,7 +192,7 @@ public class main {
         String userName = scan.nextLine();
         if (getUserAccountsMap().containsKey(userName)){
             System.out.println("User Found, Logging In...");
-            scan.close();
+            currentUser = new User(userName, (String) getUserAccountsMap().get(userName)); // set the current user
             return true;
         }
         else{
@@ -193,15 +204,12 @@ public class main {
 
             if (answer.equalsIgnoreCase("no")){
                 System.out.println("Redirecting...");
-                scan.close();
-                return true;
+                return false;
             }
             else if (answer.equalsIgnoreCase("yes")){
                 create();
-                scan.close();
                 return true;
             }
-            scan.close();
             return false;
         }
     }
@@ -235,7 +243,6 @@ public class main {
 
             populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
         }
-        scan.close();
     }
 
     public static void search(){  //allows for rent-standard and admin accounts to rent listing
@@ -272,7 +279,6 @@ public class main {
         rentalUnits.removeIf(i -> i.getUserName().equals(userName));
         populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
 
-        scan.close();
     }
     public static void create(){
 
@@ -291,11 +297,13 @@ public class main {
             System.out.println("Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS: ");
             userType = scan.nextLine();
 
+
             userAccounts.add(new User(user,userType));
             populateFile(new File("Front-End/resources/accounts.txt"), userAccounts);
+            currentUser = new User(user, userType);
 
             System.out.println("User Created Successfully!");
-            scan.close();
+
 
         }
         else{
@@ -306,54 +314,73 @@ public class main {
 
     }
     public static void main(String[] args) throws IOException {
+        isLoggedIn = false;
         loadUserAccounts();
         loadRentalUnits();
         Scanner scan = new Scanner(System.in);
         String comm;
+        String transCode;
         Boolean on = true;
-        DecimalFormat df = new DecimalFormat("#000000.00");
 
-        System.out.println(df.format(122));
-        User u = new User("NickG" , "FS");
-//        Post p = new Post("Toronto" , 99.99f, 4, false, u);
-//        System.out.println(p.getRentalUnit().getRentalID());
+        System.out.println("Welcome to OT-Bnb. Please Login.");
+        if(!login()){
+            System.out.println("Unable to Login! You can not use OT-BnB without having an account! Exiting...");
+            System.exit(1);
+        }
+        RentalUnit baseUnit;
+        //by this point currentUser is set for the current transactions
         while (on){
-            System.out.println("Welcome to OT-Bnb. Please enter a command. (Type help for a list of commands)");
+            System.out.println("Please enter a command. (Type help for a list of commands): ");
             comm = scan.nextLine();
             switch(comm.toLowerCase()){
-                case "help":
-                help();
-                break;
-
-                case "login":
-                login();
-                break;
-
-                case "logout":
-                logout(u);
-                on = !on;
-                break;
-
-                case "rent":
-                rent();
-                break;
+                case "create":
+                    transCode = "01";
+                    create();
+                    transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+                    break;
 
                 case "delete":
-                delete();
-                break;
+                    transCode = "02";
+                    delete();
+                    break;
 
                 case "post":
-                post(u);
-                break;
+                    transCode = "03";
+                    post();
+                    transactions.add(makeTransactionString(transCode,rentalUnitForTransactionInfo,currentUser));
+                    System.out.println(transactions.get(0));
+                    break;
 
                 case "search":
-                search();
-                break;
+                    transCode = "04";
+                    search();
+                    transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+
+                    break;
+
+                case "rent":
+                    transCode = "05";
+                    rent();
+                    break;
+
+                case "help":
+                    help();
+                    break;
+
+                case "login":
+                    login();
+                    break;
+
+                case "logout":
+                    logout(currentUser);
+                    on = !on;
+                    break;
 
                 default:
                 System.out.println("Invalid command! Type \"help\" for a list of commands.");
             }
         }
+        transCode = "00";
         //scan.close();
     }
 }
