@@ -13,8 +13,6 @@ public class main {
     private static User currentUser;
     private static RentalUnit rentalUnitForTransactionInfo;
     private static boolean isLoggedIn;
-    //TODO: CREATE function only one without a rental unit tied to it, weirdly written to file
-    //TODO: Make a queue/list (STRING) for transactions in form XX_UUUUUUUUUU_TT_IIIIIIII_CCCCCCCCCCCCCCC_B_PPPPPP_NN, which will then be written to transaction file
     //TODO: Finish handling any final constraints, delete any redundant/useless functions, and clean up
     public static void help(){
         System.out.print("List of commands:\n" +
@@ -221,7 +219,6 @@ public class main {
     }
 
     public static void logout(User u){  //logs user out
-        //TODO: fully implement this
         System.out.println("User logged out. Thank you for using OT-Bnb!");
     }
 
@@ -241,12 +238,9 @@ public class main {
         System.out.println("Enter # of nights: ");
         String numNights = scan.nextLine();
 
-        if(rentalUnitsMap.containsKey(unitID)){ // if the rental unit exists
+        if(rentalUnitsMap.containsKey(unitID)){ // if the rental unit exist
             RentalUnit unitToRent = rentalUnitsMap.get(unitID);
             unitToRent.setRentFlag(true);
-
-//            loadRentalUnits();
-
             populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
             transactions.add(makeTransactionString("05",unitToRent,currentUser));
         }
@@ -262,10 +256,9 @@ public class main {
 
         System.out.println("Enter the number of bedrooms: ");
         String numOfBedroomsFilter = scan.nextLine();
-
         for(int i = 0; i < rentalUnits.size(); i++){
             RentalUnit unit = rentalUnits.get(i);
-            if((unit.getCity().equals(cityFilter)) && (unit.getPrice() <= Float.parseFloat(rentalFilter)) && (unit.getRooms() >= Integer.parseInt(numOfBedroomsFilter)) && (unit.getRentFlag().equalsIgnoreCase("F"))){
+            if((unit.getCity().equalsIgnoreCase(cityFilter)) && (unit.getPrice() <= Float.parseFloat(rentalFilter)) && (unit.getRooms() <= Integer.parseInt(numOfBedroomsFilter)) && (unit.getRentFlag().equalsIgnoreCase("F"))){
                 System.out.println(unit);
             }
         }
@@ -338,21 +331,40 @@ public class main {
             comm = scan.nextLine();
             switch(comm.toLowerCase()){
                 case "create":
-                    transCode = "01";
-                    create();
-                    transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+
+                    if(currentUser.getPrivileges().equals("FS")){
+                        transCode = "01";
+                        create();
+                        transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+                    }
+                    else{
+                        System.out.println("You don't have privileges!");
+                    }
                     break;
 
                 case "delete":
-                    transCode = "02";
-                    delete();
-                    transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+
+                    if(currentUser.getPrivileges().equals("FS")){
+                        transCode = "02";
+                        delete();
+                        transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+                    }
+                    else{
+                        System.out.println("You don't have privileges!");
+                    }
                     break;
 
                 case "post":
-                    transCode = "03";
-                    post();
-                    transactions.add(makeTransactionString(transCode,rentalUnitForTransactionInfo,currentUser));
+
+                    if(!currentUser.getPrivileges().equals("RS")){
+                        transCode = "03";
+                        post();
+                        transactions.add(makeTransactionString(transCode,rentalUnitForTransactionInfo,currentUser));
+                    }
+                    else{
+                        System.out.println("Only post-standard or full-standard(Admin) are allowed to post!");
+                    }
+
                     break;
 
                 case "search":
@@ -362,17 +374,18 @@ public class main {
                     break;
 
                 case "rent":
-                    transCode = "05";
-                    rent();
-                    //transaction added in rent function
+                    if(!currentUser.getPrivileges().equals("PS")) {
+                        transCode = "05";
+                        rent();
+                        //transaction added in rent function
+                    }
+                    else{
+                        System.out.println("Only rent-standard or full-standard(Admin) are allowed to rent!");
+                    }
                     break;
 
                 case "help":
                     help();
-                    break;
-
-                case "login":
-                    login();
                     break;
 
                 case "logout":
