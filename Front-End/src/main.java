@@ -30,9 +30,9 @@ public class main {
         return String.format("%s_%-8s_%s_%-8s_%-15s_%s_%s_%02d\n", transCode, user.getUserName(), user.getPrivileges(),
                 unit.getRentalID(), unit.getCity(), unit.getRooms(), df.format(unit.getPrice()),unit.getNightsRemaining());
     }
-    public void writeToTransactionFile(){
+    public static void writeToTransactionFile(){
         try {
-            File file = new File("Front-End/resources/transaction_file.txt");
+            File file = new File("Front-End/resources/transactions.txt");
             BufferedWriter bw = null;
             if (!file.exists()) {
                 try {
@@ -44,8 +44,9 @@ public class main {
 
             FileWriter fw = new FileWriter(file, true);
             bw = new BufferedWriter(fw);
-
-//            bw.write(); // write the transaction
+            for(String s : transactions){
+                bw.write(s); // write the transaction
+            }
 
             bw.close();
         }catch(IOException e){
@@ -109,7 +110,6 @@ public class main {
         bw.write(r.toString()); // write the rental unit details to the file
         bw.write("\n");
 
-        scan.close();
         bw.close();
 
     }
@@ -128,11 +128,14 @@ public class main {
             String line;
             while ((line = br.readLine()) != null) {
                 String [] userInfo = line.split("_");
+                if (userInfo.length == 1){
+                    break;
+                }
                 // USER NAME STORED IN userInfo[0]
                 // USER PRIVILEGES STORED IN userInfo[1]
-                User u = new User(userInfo[0], userInfo[1]);
+                User u = new User(userInfo[0].trim(), userInfo[1]);
                 userAccounts.add(u);
-                getUserAccountsMap().put(userInfo[0], userInfo[1]);
+                getUserAccountsMap().put(userInfo[0].trim(), userInfo[1]);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -149,14 +152,17 @@ public class main {
                 String [] userInfo = line.split("_");
                 // RENTAL ID IN userInfo[0]
                 // OTHER RENTAL INFO userInfo[1 - 6]
+                if (userInfo.length == 1){
+                    break;
+                }
                 boolean flag = false;
                 if(userInfo[5].equals("T")){
                     flag = true;
                 }
-                RentalUnit newUnit = new RentalUnit(userInfo[0] ,userInfo[1],userInfo[2],Integer.parseInt(userInfo[3])
+                RentalUnit newUnit = new RentalUnit(userInfo[0].trim() ,userInfo[1].trim(),userInfo[2].trim(),Integer.parseInt(userInfo[3])
                                             ,Float.parseFloat(userInfo[4]),flag,Integer.parseInt(userInfo[6]));
                 rentalUnits.add(newUnit);
-                rentalUnitsMap.put(userInfo[0], newUnit); // store by ID, each containing array thats holds
+                rentalUnitsMap.put(userInfo[0].trim(), newUnit); // store by ID, each containing array thats holds
                                                                     // rental unit data
             }
         } catch (FileNotFoundException e) {
@@ -242,6 +248,7 @@ public class main {
 //            loadRentalUnits();
 
             populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
+            transactions.add(makeTransactionString("05",unitToRent,currentUser));
         }
     }
 
@@ -260,9 +267,6 @@ public class main {
             RentalUnit unit = rentalUnits.get(i);
             if((unit.getCity().equals(cityFilter)) && (unit.getPrice() <= Float.parseFloat(rentalFilter)) && (unit.getRooms() >= Integer.parseInt(numOfBedroomsFilter)) && (unit.getRentFlag().equalsIgnoreCase("F"))){
                 System.out.println(unit);
-            }
-            else{
-                System.out.println("Unit Not Found!");
             }
         }
     }
@@ -327,7 +331,7 @@ public class main {
             System.out.println("Unable to Login! You can not use OT-BnB without having an account! Exiting...");
             System.exit(1);
         }
-        RentalUnit baseUnit;
+
         //by this point currentUser is set for the current transactions
         while (on){
             System.out.println("Please enter a command. (Type help for a list of commands): ");
@@ -342,25 +346,25 @@ public class main {
                 case "delete":
                     transCode = "02";
                     delete();
+                    transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
                     break;
 
                 case "post":
                     transCode = "03";
                     post();
                     transactions.add(makeTransactionString(transCode,rentalUnitForTransactionInfo,currentUser));
-                    System.out.println(transactions.get(0));
                     break;
 
                 case "search":
                     transCode = "04";
                     search();
                     transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
-
                     break;
 
                 case "rent":
                     transCode = "05";
                     rent();
+                    //transaction added in rent function
                     break;
 
                 case "help":
@@ -381,6 +385,8 @@ public class main {
             }
         }
         transCode = "00";
+        transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+        writeToTransactionFile();
         //scan.close();
     }
 }

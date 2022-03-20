@@ -2,6 +2,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class RentalUnit {
@@ -52,12 +53,9 @@ public class RentalUnit {
         }
     }
     public String toString(){
-
-
-        return this.rentalID + "_" + this.userName + "_" + this.city + "_" + this.bedrooms + "_"
-    + this.price + "_" + this.rentFlag + "_" + this.nightsRemaining;
-
-
+        DecimalFormat df = new DecimalFormat("#000000.00");
+        return String.format("%-8s_%-8s_%-15s_%s_%s_%s_%02d" , this.rentalID,this.userName,this.city,this.bedrooms,df.format(this.price),
+                this.rentFlag,this.nightsRemaining);
     }
 
     public void storeRental(RentalUnit r) throws IOException {
