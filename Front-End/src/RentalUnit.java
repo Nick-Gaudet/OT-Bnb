@@ -54,7 +54,7 @@ public class RentalUnit {
     }
     public String toString(){
         DecimalFormat df = new DecimalFormat("#000000.00");
-        return String.format("%-8s %-8s %-15s %s %s %s %02d" , this.rentalID,this.userName,this.city,this.bedrooms,df.format(this.price),
+        return String.format("%-8s_%-8s_%-15s_%s_%s_%s_%02d" , this.rentalID,this.userName,this.city,this.bedrooms,df.format(this.price),
                 this.rentFlag,this.nightsRemaining);
     }
 

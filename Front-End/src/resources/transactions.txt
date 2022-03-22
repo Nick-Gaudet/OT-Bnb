@@ -1,0 +1,10 @@
+03 NickG    FS XARZLXPE tesing          9 000999.99 14
+00 NickG    FS                          0 000000.00 00
+00 NickG    FS                          0 000000.00 00
+00 NickG    FS                          0 000000.00 00
+00 NickG    FS                          0 000000.00 00
+03 NickG    FS JUCB34TT Toronto         5 000099.00 14
+03 NickG    FS 102OQXGE New York        3 000678.54 14
+00 NickG    FS                          0 000000.00 00
+04 NickG    FS                          0 000000.00 00
+00 NickG    FS                          0 000000.00 00

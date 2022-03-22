@@ -9,9 +9,9 @@ public class main {
     //GLOBALS
     private static HashMap<String, String> userAccountsFromFile = new HashMap<String, String>();
     private static HashMap<String, RentalUnit> rentalUnitsMap = new HashMap<String, RentalUnit>();
-    private static ArrayList<RentalUnit> rentalUnits = new ArrayList<>();
-    private static ArrayList<User> userAccounts = new ArrayList<>();
-    private static ArrayList<String> transactions = new ArrayList<>();
+    private static ArrayList<RentalUnit> rentalUnits = new ArrayList<RentalUnit>();
+    private static ArrayList<User> userAccounts = new ArrayList<User>();
+    private static ArrayList<String> transactions = new ArrayList<String>();
     private static User currentUser;
     private static RentalUnit rentalUnitForTransactionInfo;
 
@@ -31,7 +31,7 @@ public class main {
     }
     public static void writeToTransactionFile(){
         try {
-            File file = new File("Front-End/resources/transactions.txt");
+            File file = new File("resources/transactions.txt");
             BufferedWriter bw = null;
             if (!file.exists()) {
                 try {
@@ -97,13 +97,13 @@ public class main {
         RentalUnit r = new RentalUnit(iD.toString(),currentUser.getUserName(), city, Integer.parseInt(bedrooms), Float.parseFloat(price), false, 14);
         rentalUnitForTransactionInfo = r;
 
-        File file = new File("Front-End/resources/rentalunits.txt");
+        File file = new File("resources/rentalunits.txt");
         BufferedWriter bw = null;
         if(!file.exists()){ // if the file doesnt exist yet
             file.createNewFile();
         }
 
-        FileWriter fw = new FileWriter(file,true);
+        FileWriter fw = new FileWriter(file.getAbsolutePath(),true);
         bw = new BufferedWriter(fw);
 
         bw.write(r.toString()); // write the rental unit details to the file
@@ -122,8 +122,11 @@ public class main {
         return rentalUnits;
     }
 
-    public static void loadUserAccounts(){ // loads existing user accounts from file on Ot-Bnb launch then maps them
-        File file = new File("Front-End/resources/accounts.txt");
+    public static void loadUserAccounts(String f){ // loads existing user accounts from file on Ot-Bnb launch then maps them
+        File file = new File("./resources/" + f);
+        if(file.exists()){
+            System.out.println("EXISTS");
+        }
         try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath()))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -135,7 +138,7 @@ public class main {
                 // USER PRIVILEGES STORED IN userInfo[1]
                 User u = new User(userInfo[0].trim(), userInfo[1]);
                 userAccounts.add(u);
-                getUserAccountsMap().put(userInfo[0].trim(), userInfo[1]);
+                userAccountsFromFile.put(userInfo[0].trim(), userInfo[1]);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -144,8 +147,8 @@ public class main {
         }
     }
 
-    public static void loadRentalUnits(){ // loads existing rental units from file on Ot-Bnb launch then maps them
-        File file = new File("Front-End/resources/rentalunits.txt");
+    public static void loadRentalUnits(String f){ // loads existing rental units from file on Ot-Bnb launch then maps them
+        File file = new File("./resources/" + f);
         try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath()))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -161,6 +164,7 @@ public class main {
                 }
                 RentalUnit newUnit = new RentalUnit(userInfo[0].trim() ,userInfo[1].trim(),userInfo[2].trim(),Integer.parseInt(userInfo[3])
                                             ,Float.parseFloat(userInfo[4]),flag,Integer.parseInt(userInfo[6]));
+                System.out.println(newUnit);
                 rentalUnits.add(newUnit);
                 rentalUnitsMap.put(userInfo[0].trim(), newUnit); // store by ID, each containing array thats holds
                                                                     // rental unit data
@@ -181,7 +185,7 @@ public class main {
             file.delete();
             file.createNewFile();
 
-            FileWriter fw = new FileWriter(file, true);
+            FileWriter fw = new FileWriter(file.getAbsolutePath(), true);
             bw = new BufferedWriter(fw);
             for(Object u : items){
                 bw.write(u.toString()); // write the rental unit details to the file
@@ -244,7 +248,7 @@ public class main {
         if(rentalUnitsMap.containsKey(unitID)){ // if the rental unit exist
             RentalUnit unitToRent = rentalUnitsMap.get(unitID);
             unitToRent.setRentFlag(true);
-            populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
+            populateFile(new File("resources/rentalunits.txt"), rentalUnits);
             transactions.add(makeTransactionString("05",unitToRent,currentUser));
         }
     }
@@ -274,10 +278,10 @@ public class main {
 
         // delete the user name from the file
         userAccounts.removeIf(i -> i.getUserName().equals(userName));
-        populateFile(new File("Front-End/resources/accounts.txt"), userAccounts);
+        populateFile(new File("resources/accounts.txt"), userAccounts);
 
         rentalUnits.removeIf(i -> i.getUserName().equals(userName));
-        populateFile(new File("Front-End/resources/rentalunits.txt"), rentalUnits);
+        populateFile(new File("resources/rentalunits.txt"), rentalUnits);
 
     }
     public static void create(){ // creates a new user account, updates the file as well
@@ -299,7 +303,7 @@ public class main {
 
 
             userAccounts.add(new User(user,userType));
-            populateFile(new File("Front-End/resources/accounts.txt"), userAccounts);
+            populateFile(new File("resources/accounts.txt"), userAccounts);
             currentUser = new User(user, userType);
 
             System.out.println("User Created Successfully!");
@@ -314,8 +318,10 @@ public class main {
 
     }
     public static void main(String[] args) throws IOException {
-        loadUserAccounts();
-        loadRentalUnits();
+        String userAccountsFile = args[0];
+        String rentalUnitsFile = args[1];
+        loadUserAccounts(userAccountsFile);
+        loadRentalUnits(rentalUnitsFile);
         Scanner scan = new Scanner(System.in);
         String comm;
         String transCode;
