@@ -3,4 +3,10 @@ admin
 search
 Oshawa
 15.00
-*
+
+
+post
+New York
+1055.23
+17
+logout

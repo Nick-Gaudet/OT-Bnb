@@ -4,3 +4,4 @@ search
 Oshawa
 15.00
 2
+logout
