@@ -1,7 +1,8 @@
 #!/bin/bash
 
+#Don't run this!
 FILES="inputs/*.txt"
 for f in $FILES
 do
-    cat "$f"
+    cat "$f" | java main accounts.txt rentalunits.txt > output
 done
