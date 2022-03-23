@@ -72,8 +72,8 @@ public class main {
             System.out.println("Maximum amount per night is $999.99");
         }
 
-        if (city.length() > 25){
-            city = city.substring(0,25);
+        if (city.length() > 15){
+            city = city.substring(0,15);
             System.out.println("City name too long! Shortening to " + city);
         }
 
@@ -293,7 +293,7 @@ public class main {
 
         if(!doesUsernameExist(user)) {
 
-            while (user.length() > 15) {
+            while (user.length() > 10) {
                 System.out.println("Enter a shorter username: ");
                 user = scan.nextLine();
             }
@@ -312,8 +312,6 @@ public class main {
         }
         else{
             System.out.println("Username already exists!");
-            create();
-
         }
 
     }

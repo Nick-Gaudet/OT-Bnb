@@ -1,0 +1,7 @@
+login
+NickG
+rent
+AAAA0000
+14
+Y
+logout

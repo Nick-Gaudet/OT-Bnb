@@ -1,3 +1,4 @@
-05 admin    FS FDFS45FV Oshawa          2 000015.00 14
-05 rentuser FS POFV5S4D Oshawa          2 000015.00 14
-00 rentuser FS                          0 000000.00 00
+05 NickG      FS RNT00000 Oshawa          2 000015.00 01
+00 NickG      FS                          0 000000.00 00
+05 rentuser   FS RNT00001 Toronto         2 000015.00 01
+00 rentuser   FS                          0 000000.00 00
