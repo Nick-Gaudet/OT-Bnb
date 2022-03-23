@@ -434,14 +434,9 @@ public class main {
 
                 case "logout":
 
-                    if(loggedin == true){
-                        logout(currentUser);
-                        loggedin = false;
-                        on = !on;
-                    }
-                    else{
-                        System.out.println("Cannot logout if you're not logged in!");
-                    }
+                    logout(currentUser);
+                    loggedin = false;
+                    on = !on;
                     break;
 
                 default:
