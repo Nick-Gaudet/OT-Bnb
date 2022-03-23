@@ -326,69 +326,105 @@ public class main {
         String comm;
         String transCode;
         Boolean on = true;
+        Boolean loggedin = false;
 
-        System.out.println("Welcome to OT-Bnb. Please Login.");
+        System.out.println("Welcome to OT-Bnb. Please Login.");/*
         if(!login()){
             System.out.println("Unable to Login! You can not use OT-BnB without having an account! Exiting...");
             System.exit(1);
-        }
+        }*/
 
         //by this point currentUser is set for the current transactions
         while (on){
             System.out.println("Please enter a command. (Type help for a list of commands): ");
             comm = scan.nextLine();
             switch(comm.toLowerCase()){
+                case "login":
+
+                    if(!login()){
+                        System.out.println("Unable to Login! You can not use OT-BnB without having an account! Exiting...");
+                        System.exit(1);
+                    }
+                    loggedin = true;
+                    break;
+
                 case "create":
 
-                    if(currentUser.getPrivileges().equals("FS")){
-                        transCode = "01";
-                        create();
-                        transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+                    if(loggedin == true){
+                        if(currentUser.getPrivileges().equals("FS")){
+                            transCode = "01";
+                            create();
+                            transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+                        }
+                        else{
+                            System.out.println("You don't have privileges!");
+                        }
                     }
                     else{
-                        System.out.println("You don't have privileges!");
+                        System.out.println("Please login first!");
                     }
                     break;
 
                 case "delete":
 
-                    if(currentUser.getPrivileges().equals("FS")){
-                        transCode = "02";
-                        delete();
-                        transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+                    if(loggedin == true){
+                        if(currentUser.getPrivileges().equals("FS")){
+                            transCode = "02";
+                            delete();
+                            transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+                        }
+                        else{
+                            System.out.println("You don't have privileges!");
+                        }
                     }
                     else{
-                        System.out.println("You don't have privileges!");
+                        System.out.println("Please login first!");
                     }
                     break;
 
                 case "post":
 
-                    if(!currentUser.getPrivileges().equals("RS")){
-                        transCode = "03";
-                        post();
-                        transactions.add(makeTransactionString(transCode,rentalUnitForTransactionInfo,currentUser));
+                    if(loggedin == true){
+                        if(!currentUser.getPrivileges().equals("RS")){
+                            transCode = "03";
+                            post();
+                            transactions.add(makeTransactionString(transCode,rentalUnitForTransactionInfo,currentUser));
+                        }
+                        else{
+                            System.out.println("Only post-standard or full-standard(Admin) are allowed to post!");
+                        }
                     }
                     else{
-                        System.out.println("Only post-standard or full-standard(Admin) are allowed to post!");
+                        System.out.println("Please login first!");
                     }
-
                     break;
 
                 case "search":
-                    transCode = "04";
-                    search();
-                    transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+                    
+                    if(loggedin == true){
+                        transCode = "04";
+                        search();
+                        transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
+                    }
+                    else{
+                        System.out.println("Please login first!");
+                    }
                     break;
 
                 case "rent":
-                    if(!currentUser.getPrivileges().equals("PS")) {
-                        transCode = "05";
-                        rent();
-                        //transaction added in rent function
+
+                    if(loggedin == true){
+                        if(!currentUser.getPrivileges().equals("PS")) {
+                            transCode = "05";
+                            rent();
+                            //transaction added in rent function
+                        }
+                        else{
+                            System.out.println("Only rent-standard or full-standard(Admin) are allowed to rent!");
+                        }
                     }
                     else{
-                        System.out.println("Only rent-standard or full-standard(Admin) are allowed to rent!");
+                        System.out.println("Please login first!");
                     }
                     break;
 
@@ -397,8 +433,15 @@ public class main {
                     break;
 
                 case "logout":
-                    logout(currentUser);
-                    on = !on;
+
+                    if(loggedin == true){
+                        logout(currentUser);
+                        loggedin = false;
+                        on = !on;
+                    }
+                    else{
+                        System.out.println("Cannot logout if you're not logged in!");
+                    }
                     break;
 
                 default:

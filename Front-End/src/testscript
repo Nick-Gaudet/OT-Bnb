@@ -1,0 +1,5 @@
+#!/bin/bash
+chdir inputs
+for each i (*) echo "Running test $i"
+    'C:\Program Files\Java\jdk-17.0.2\bin\java.exe' '--enable-preview' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\Users\Kevin Chitnaraine\AppData\Roaming\Code\User\workspaceStorage\97bd670b0ac020f9914c55cadb5e4295\redhat.java\jdt_ws\OT-Bnb_7d5c3b3f\bin' 'main' 'accounts.txt' 'rentalunits.txt'
+end
