@@ -14,6 +14,7 @@ public class main {
     private static ArrayList<String> transactions = new ArrayList<String>();
     private static User currentUser;
     private static RentalUnit rentalUnitForTransactionInfo;
+    private static Scanner scan = new Scanner(System.in);
 
     public static void help(){
         System.out.print("List of commands:\n" +
@@ -54,7 +55,6 @@ public class main {
     }
     public static void post() throws IOException {
         String city,price,bedrooms;
-        Scanner scan = new Scanner(System.in);
         System.out.println("Enter a city: ");
         city = scan.nextLine();
 
@@ -198,7 +198,6 @@ public class main {
         }
     }
     public static boolean login(){  //searches username database, returns true if username found
-        Scanner scan = new Scanner(System.in);
         System.out.println("Enter UserName:  ");
         String userName = scan.nextLine();
         if (getUserAccountsMap().containsKey(userName)){
@@ -239,7 +238,6 @@ public class main {
         return false;
     }
     public static void rent(){  //allows for rent-standard and admin accounts to rent listing
-        Scanner scan = new Scanner(System.in);
         System.out.println("Enter Rental Unit ID: ");
         String unitID = scan.nextLine();
         System.out.println("Enter # of nights: ");
@@ -254,7 +252,6 @@ public class main {
     }
 
     public static void search(){  //allows for rent-standard and admin accounts to rent listing
-        Scanner scan = new Scanner(System.in);
         System.out.println("Enter a city: ");
         String cityFilter = scan.nextLine();
 
@@ -272,7 +269,6 @@ public class main {
     }
 
     public static void delete(){ // deletes the user from file and any units correlated, updates files as well
-        Scanner scan = new Scanner(System.in);
         System.out.println("Enter User Name: ");
         String userName = scan.nextLine();
 
@@ -287,7 +283,6 @@ public class main {
     public static void create(){ // creates a new user account, updates the file as well
 
         String userType;
-        Scanner scan = new Scanner(System.in);
         System.out.println("Enter username for account: ");
         String user = scan.nextLine();
 
@@ -320,7 +315,6 @@ public class main {
         String rentalUnitsFile = args[1];
         loadUserAccounts(userAccountsFile);
         loadRentalUnits(rentalUnitsFile);
-        Scanner scan = new Scanner(System.in);
         String comm;
         String transCode;
         Boolean on = true;
