@@ -1,7 +1,0 @@
-Welcome to OT-Bnb. Please Login.
-login
-Enter UserName:
-NickG
-User Found, Logging In...
-logout
-User logged out. Thank you for using OT-Bnb!

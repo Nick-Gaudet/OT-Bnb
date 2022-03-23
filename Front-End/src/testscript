@@ -1,10 +1,9 @@
 #!/bin/bash
 
-cd inputs
-for FILE in *;
+FILES="inputs/*.txt"
+for f in $FILES
 do
-    #basename=${i%.*}
-    #echo $FILE
-    java main accounts.txt rentalunits.txt $FILE #> $basename.output
-    #diff $basename.output exp1.
+    basename=${f%.*}
+    java main accounts.txt rentalunits.txt < "$f" > "$basename.out"
+
 done

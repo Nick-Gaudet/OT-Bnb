@@ -1,0 +1,7 @@
+#!/bin/bash
+
+FILES="inputs/*.txt"
+for f in $FILES
+do
+    cat "$f"
+done
