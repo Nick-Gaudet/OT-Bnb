@@ -1,0 +1,17 @@
+login
+admin
+post
+Oshawa
+15.00
+2
+logout
+login
+postuser
+rent
+Toronto
+15.00
+2
+logout
+login
+rentuser
+post

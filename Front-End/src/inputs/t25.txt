@@ -1,0 +1,6 @@
+login
+admin
+post
+Oshawa
+15.00
+9

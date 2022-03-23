@@ -1,0 +1,17 @@
+login
+admin
+rent
+00000001
+1
+Y
+logout
+login
+rentuser
+rent
+00000002
+1
+Y
+logout
+login
+postuser
+rent

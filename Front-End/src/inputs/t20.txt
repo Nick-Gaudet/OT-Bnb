@@ -1,0 +1,5 @@
+login
+admin
+post
+Oshawa
+1000.00

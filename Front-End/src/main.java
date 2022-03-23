@@ -311,7 +311,7 @@ public class main {
 
         }
         else{
-            System.out.println("Username exists!");
+            System.out.println("Username already exists!");
             create();
 
         }
