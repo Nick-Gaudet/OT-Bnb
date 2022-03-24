@@ -1,9 +1,0 @@
-#!/bin/bash
-
-FILES="inputs/*.txt"
-for f in $FILES
-do
-    basename=${f%.*}
-    java main accounts.txt rentalunits.txt < "$f" > "$basename.out"
-
-done

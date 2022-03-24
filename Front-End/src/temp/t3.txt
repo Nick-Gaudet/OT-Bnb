@@ -1,5 +1,0 @@
-logout
-create
-delete
-post
-rent

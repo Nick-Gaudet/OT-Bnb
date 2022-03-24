@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#pick directory for the loop
+FILES="inputs/*.txt"
+for f in $FILES
+do
+    basename=${f%.*}                                                    #change basename for file saving
+    java main accounts.txt rentalunits.txt < "$f" > "$basename.out"     #execute inputfiles into java program and crate output files
+
+done

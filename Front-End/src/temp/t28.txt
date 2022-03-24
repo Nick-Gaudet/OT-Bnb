@@ -1,7 +1,0 @@
-login
-admin
-search
-Oshawwwwa
-15.00
-2
-logout

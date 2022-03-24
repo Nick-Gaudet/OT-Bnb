@@ -1,3 +1,8 @@
 NickG   _FS
 KevinCC _RS
 KevinC  _FS
+rentuser_RS
+tenorless_RS
+postuser_PS
+newadmin_FS
+NickGTwo_admin
