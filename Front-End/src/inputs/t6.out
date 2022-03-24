@@ -1,0 +1,40 @@
+Welcome to OT-Bnb. Please Login.
+Please enter a command. (Type help for a list of commands): 
+Enter UserName:  
+User Found, Logging In...
+Please enter a command. (Type help for a list of commands): 
+Enter username for account: 
+Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS: 
+User Created Successfully!
+Please enter a command. (Type help for a list of commands): 
+You don't have privileges!
+Please enter a command. (Type help for a list of commands): 
+Invalid command! Type "help" for a list of commands.
+Please enter a command. (Type help for a list of commands): 
+Enter a city: 
+Enter a rental price: 
+Enter the number of bedrooms: 
+Please enter a command. (Type help for a list of commands): 
+Enter a city: 
+Enter a rental price: 
+Enter the number of bedrooms: 
+6XPQC057_NickG   _Oshawa         _2_000015.00_F_14
+OYLI48J5_NickG   _Oshawa         _2_000015.00_F_14
+6DP1KPOT_NickG   _Oshawa         _2_000015.00_F_14
+Y20M7CZ2_NickG   _Oshawa         _2_000015.00_F_14
+TJT51JVA_NickG   _Oshawa         _2_000015.00_F_14
+XI0AQ3FL_NickG   _Oshawa         _2_000015.00_F_14
+U5B7Y0WM_NickG   _Oshawa         _2_000015.00_F_14
+KQDJC75Z_NickG   _Oshawa         _2_000015.00_F_14
+52UOMC01_NickG   _Oshawa         _2_000015.00_F_14
+BFXWN7LT_NickG   _Oshawa         _2_000015.00_F_14
+2TM54KTI_NickG   _Oshawa         _2_000015.00_F_14
+X7D1AIWP_NickG   _Oshawa         _2_000015.00_F_14
+7OLXGNM4_NickG   _Oshawa         _2_000015.00_F_14
+Please enter a command. (Type help for a list of commands): 
+Enter Rental Unit ID: 
+Enter # of nights: 
+Please enter a command. (Type help for a list of commands): 
+Invalid command! Type "help" for a list of commands.
+Please enter a command. (Type help for a list of commands): 
+User logged out. Thank you for using OT-Bnb!

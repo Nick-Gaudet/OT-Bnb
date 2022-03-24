@@ -1,8 +1,11 @@
 #!/bin/bash
 
-#Don't run this!
 FILES="inputs/*.txt"
+count=1
 for f in $FILES
 do
-    cat "$f" | java main accounts.txt rentalunits.txt > output
+    echo ${f%.*}
+    basename=${%.*}
+    java main accounts.txt rentalunits.txt < "$f" > "console_acc_output/$((++count)).txt"
+
 done

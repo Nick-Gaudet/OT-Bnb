@@ -1,15 +1,11 @@
-<<<<<<< HEAD
 Welcome to OT-Bnb. Please Login.
 Please enter a command. (Type help for a list of commands): 
 Enter UserName:  
 User Found, Logging In...
 Please enter a command. (Type help for a list of commands): 
-Enter User Name: 
+Enter a city: 
+Enter a rental price: 
+Enter the number of bedrooms: 
+Max number of bedrooms is 9! Defaulting...
 Please enter a command. (Type help for a list of commands): 
 User logged out. Thank you for using OT-Bnb!
-=======
-Please enter your username:
-Welcome, nonadmin!
-Enter username to delete:
-Username does not exist!
->>>>>>> f9d25244b9e85c71b1ecb0a081e1099b2ff1df46

@@ -1,6 +1,0 @@
-login
-admin
-rent
-00000002
-14
-Y
