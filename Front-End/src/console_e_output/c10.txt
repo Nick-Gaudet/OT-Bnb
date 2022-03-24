@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 Welcome to OT-Bnb. Please Login.
 Please enter a command. (Type help for a list of commands): 
 Enter UserName:  
 User Found, Logging In...
 You don't have privileges!
+Please enter a command. (Type help for a list of commands): 
 User logged out. Thank you for using OT-Bnb!
-=======
-Please enter your username:
-Welcome, nonadmin!
-Only admin accounts can perform this task.
->>>>>>> f9d25244b9e85c71b1ecb0a081e1099b2ff1df46

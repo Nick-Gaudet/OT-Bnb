@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Welcome to OT-Bnb. Please Login.
 Please enter a command. (Type help for a list of commands): 
 Enter UserName:  
@@ -10,9 +9,3 @@ Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS:
 User Created Successfully!
 Please enter a command. (Type help for a list of commands):
 User logged out. Thank you for using OT-Bnb!
-=======
-Please enter your username:
-Welcome, admin!
-Enter new username:
-Username is too long (must be 15 or less characters)
->>>>>>> f9d25244b9e85c71b1ecb0a081e1099b2ff1df46
