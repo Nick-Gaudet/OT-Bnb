@@ -3,5 +3,5 @@
 cd inputs
 for f in *.out *.txt;
 do
-    diff -b "$f" "$f" > "outputdiff.txt" 
+    diff -u "$f" "$f" > "outputdiff.txt"
 done

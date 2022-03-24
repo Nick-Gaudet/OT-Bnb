@@ -2,9 +2,13 @@
 
 #pick directory for the loop
 FILES="inputs/*.txt"
+num=0
+echo $num
 for f in $FILES
 do
+  {
     basename=${f%.*}                                                    #change basename for file saving
-    java main accounts.txt rentalunits.txt < "$f" > "$basename.out"     #execute inputfiles into java program and crate output files
+    java main accounts.txt rentalunits.txt < "$f"     #execute inputfiles into java program and crate output files
+  } > "console_acc_output/consoleout_$((num++)).txt"
 
 done
