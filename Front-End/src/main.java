@@ -84,20 +84,19 @@ public class main {
             System.out.println("Max number of bedrooms is 9! Defaulting...");
         }
 
-        //create a new rental unit to store
 
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        Random random = new Random();
+        //GET NUMBER OF UNITS, 1 UNIT is 1 LINE in TEXT FILE
+        BufferedReader reader = new BufferedReader(new FileReader("resources/rentalunits.txt"));
+        int units = 0;
+        while (reader.readLine() != null) units++;
+        reader.close();
 
-        //generate a random unit ID
-        StringBuilder iD = new StringBuilder(8);
-        for (int i = 0; i < 8; i++) { // generate a random alpha numeric ID
-            iD.append(alphabet.charAt(random.nextInt(alphabet.length())));
-        }
+        String iD = String.format("RNT%05d", units);
 
         //create the rental unit for the post being made
-        RentalUnit r = new RentalUnit(iD.toString(),currentUser.getUserName(), city, Integer.parseInt(bedrooms), Float.parseFloat(price), false, 14);
+        RentalUnit r = new RentalUnit(iD,currentUser.getUserName(), city, Integer.parseInt(bedrooms), Float.parseFloat(price), false, 14);
         rentalUnitForTransactionInfo = r;
+
 
         File file = new File("resources/rentalunits.txt");
         BufferedWriter bw = null;
