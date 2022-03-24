@@ -250,6 +250,10 @@ public class main {
 
         if(rentalUnitsMap.containsKey(unitID)){ // if the rental unit exist
             RentalUnit unitToRent = rentalUnitsMap.get(unitID);
+            if(unitToRent.getRentFlag() == "T"){
+                System.out.println("This unit is currently being rented!");
+                return;
+            }
             unitToRent.setRentFlag(true);
             populateFile(new File("resources/rentalunits.txt"), rentalUnits);
             transactions.add(makeTransactionString("05",unitToRent,currentUser));
