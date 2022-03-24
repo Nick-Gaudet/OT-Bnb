@@ -1,7 +1,7 @@
 login
 NickG
 rent
-AAAA0000
+RNT00006
 14
 Y
 logout

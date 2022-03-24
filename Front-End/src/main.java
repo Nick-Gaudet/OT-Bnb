@@ -124,9 +124,7 @@ public class main {
 
     public static void loadUserAccounts(String f){ // loads existing user accounts from file on Ot-Bnb launch then maps them
         File file = new File("./resources/" + f);
-        if(file.exists()){
-            System.out.println("EXISTS");
-        }
+
         try (BufferedReader br = new BufferedReader(new FileReader(file.getAbsolutePath()))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -164,7 +162,7 @@ public class main {
                 }
                 RentalUnit newUnit = new RentalUnit(userInfo[0].trim() ,userInfo[1].trim(),userInfo[2].trim(),Integer.parseInt(userInfo[3])
                                             ,Float.parseFloat(userInfo[4]),flag,Integer.parseInt(userInfo[6]));
-                System.out.println(newUnit);
+
                 rentalUnits.add(newUnit);
                 rentalUnitsMap.put(userInfo[0].trim(), newUnit); // store by ID, each containing array thats holds
                                                                     // rental unit data
