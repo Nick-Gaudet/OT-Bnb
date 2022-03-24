@@ -332,7 +332,10 @@ public class main {
             comm = scan.nextLine();
             switch(comm.toLowerCase()){
                 case "login":
-
+                    if(loggedin){
+                        System.out.println("There is already a user logged in!");
+                        break;
+                    }
                     if(!login()){
                         System.out.println("Unable to Login! You can not use OT-BnB without having an account! Exiting...");
                         System.exit(1);
