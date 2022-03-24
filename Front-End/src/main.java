@@ -32,7 +32,9 @@ public class main {
     }
     public static void writeToTransactionFile(){
         try {
-            File file = new File("resources/transactions.txt");
+            int numFiles = new File("outputs/").list().length; // gets number of trans files, makes a new
+                                                                // file with proper number
+            File file = new File("outputs/transaction_"+ numFiles +".txt");
             BufferedWriter bw = null;
             if (!file.exists()) {
                 try {
