@@ -1,0 +1,7 @@
+Please enter your username:
+Welcome, admin!
+Enter username to delete:
+Deleted user nonadmin
+Logged out
+Enter username:
+Sorry, this account does not exist!

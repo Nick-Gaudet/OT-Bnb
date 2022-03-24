@@ -1,0 +1,21 @@
+Please enter your username:
+Welcome, admin!
+Enter new username:
+Enter user type (admin, rent-standard, post-standard)
+Created admin user newadmin.
+Enter username to delete:
+User newadmin deleted.
+Enter city name:
+Enter rental price (in dollars):
+Enter # bedrooms:
+Created rental in Oshawa with 2 bedrooms, rental price 15.00
+Rental ID: 00000001
+Enter city name:
+Enter rental price (in dollars):
+Enter # bedrooms:
+Found listing in Oshawa with 2 bedrooms for price 15.00
+Enter rental ID:
+Enter # of nights:
+Rental in Toronto for 2 bedrooms for 1 night, price 15.00.
+Would you like to choose this rental? (Y/N)
+Enjoy your stay in Toronto!

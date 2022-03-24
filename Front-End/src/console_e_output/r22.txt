@@ -1,0 +1,4 @@
+Please enter your username:
+Welcome, admin!
+Enter city name:
+The city name is too long (max 25 characters).

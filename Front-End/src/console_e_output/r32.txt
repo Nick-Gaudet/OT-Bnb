@@ -1,0 +1,7 @@
+Please enter your username:
+Welcome, admin!
+Enter rental ID:
+Enter # of nights:
+Rental in Toronto for 2 bedrooms for 1 night, price 15.00.
+Would you like to choose this rental? (Y/N)
+Enjoy your stay in Toronto!

@@ -1,0 +1,5 @@
+Please enter your username:
+Welcome, admin!
+Enter city name:
+Enter rental price (in dollars):
+Maximum rental price is 999.99.

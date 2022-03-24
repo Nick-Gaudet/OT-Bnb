@@ -1,0 +1,19 @@
+Please enter your username:
+Welcome, admin!
+Enter city name:
+Enter rental price (in dollars):
+Enter # bedrooms:
+Created rental in Oshawa with 2 bedrooms, rental price 15.00
+Rental ID: 00000001
+Logged out.
+Please enter your username:
+Welcome, postuser!
+Enter city name:
+Enter rental price (in dollars):
+Enter # bedrooms:
+Created rental in Toronto with 2 bedrooms, rental price 15.00
+Rental ID: 00000002
+Logged out.
+Please enter your username:
+Welcome, rentuser!
+Only post-standard and admin accounts can post

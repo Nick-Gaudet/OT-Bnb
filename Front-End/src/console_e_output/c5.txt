@@ -1,0 +1,4 @@
+Please enter your username:
+Welcome, nonadmin!
+This user cannot perform admin tasks.
+This user cannot perform admin tasks.

@@ -1,0 +1,7 @@
+Please enter your username:
+Welcome, admin!
+Enter city name:
+Enter rental price (in dollars):
+Enter # bedrooms:
+Created rental in Oshawa with 2 bedrooms, rental price 15.00
+User must exit session before creating another rental.

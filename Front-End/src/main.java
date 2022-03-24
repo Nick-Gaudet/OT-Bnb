@@ -340,7 +340,7 @@ public class main {
 
                 case "create":
 
-                    if(loggedin == true){
+                    if(loggedin){
                         if(currentUser.getPrivileges().equals("FS")){
                             transCode = "01";
                             create();
@@ -351,13 +351,13 @@ public class main {
                         }
                     }
                     else{
-                        System.out.println("Please login first!");
+                        System.out.println("Only logged-in users can perform this task.");
                     }
                     break;
 
                 case "delete":
 
-                    if(loggedin == true){
+                    if(loggedin){
                         if(currentUser.getPrivileges().equals("FS")){
                             transCode = "02";
                             delete();
@@ -368,13 +368,13 @@ public class main {
                         }
                     }
                     else{
-                        System.out.println("Please login first!");
+                        System.out.println("Only logged-in users can perform this task.");
                     }
                     break;
 
                 case "post":
 
-                    if(loggedin == true){
+                    if(loggedin){
                         if(!currentUser.getPrivileges().equals("RS")){
                             transCode = "03";
                             post();
@@ -385,25 +385,25 @@ public class main {
                         }
                     }
                     else{
-                        System.out.println("Please login first!");
+                        System.out.println("Only logged-in users can perform this task.");
                     }
                     break;
 
                 case "search":
                     
-                    if(loggedin == true){
+                    if(loggedin){
                         transCode = "04";
                         search();
                         transactions.add(makeTransactionString(transCode,new RentalUnit(),currentUser));
                     }
                     else{
-                        System.out.println("Please login first!");
+                        System.out.println("Only logged-in users can perform this task.");
                     }
                     break;
 
                 case "rent":
 
-                    if(loggedin == true){
+                    if(loggedin){
                         if(!currentUser.getPrivileges().equals("PS")) {
                             transCode = "05";
                             rent();
@@ -414,7 +414,7 @@ public class main {
                         }
                     }
                     else{
-                        System.out.println("Please login first!");
+                        System.out.println("Only logged-in users can perform this task.");
                     }
                     break;
 
@@ -423,10 +423,14 @@ public class main {
                     break;
 
                 case "logout":
-
-                    logout(currentUser);
-                    loggedin = false;
-                    on = !on;
+                    if (loggedin){
+                        logout(currentUser);
+                        loggedin = false;
+                        on = !on;
+                    }
+                    else{
+                        System.out.println("Only logged-in users can perform this task.");
+                    }
                     break;
 
                 default:
