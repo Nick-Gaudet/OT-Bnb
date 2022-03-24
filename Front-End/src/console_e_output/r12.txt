@@ -1,4 +1,0 @@
-Please enter your username:
-Welcome, admin!
-Enter new username:
-Username is too long (must be 15 or less characters)

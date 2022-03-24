@@ -8,9 +8,8 @@ logout
 login
 postuser
 rent
-Toronto
-15.00
-2
+RNT00002
+1
 logout
 login
 rentuser

@@ -1,5 +1,0 @@
-Please enter your username:
-Welcome, admin!
-Enter rental ID:
-Enter # of nights:
-Rentals can only be from 1-14 days.

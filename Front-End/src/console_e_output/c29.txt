@@ -3,20 +3,15 @@ Please enter a command. (Type help for a list of commands):
 Enter UserName:  
 User Found, Logging In...
 Please enter a command. (Type help for a list of commands): 
-Enter username for account: 
-Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS: 
-User Created Successfully!
+Enter a city: 
+Enter a rental price: 
+Enter the number of bedrooms: 
+RNT00001_NickG   _Oshawa         _2_000015.00_T_14
 Please enter a command. (Type help for a list of commands):
 Enter a city: 
 Enter a rental price: 
 Enter the number of bedrooms: 
-Please enter a command. (Type help for a list of commands):
-Enter a city: 
-Enter a rental price: 
-Enter the number of bedrooms: 
-RNT00000_NickG   _Oshawa         _5_000015.00_F_14
-Please enter a command. (Type help for a list of commands):
-Enter Rental Unit ID: 
-Enter # of nights: 
+Maximum amount per night is $999.99
+Max number of bedrooms is 9! Defaulting...
 Please enter a command. (Type help for a list of commands):
 User logged out. Thank you for using OT-Bnb!

@@ -1,4 +1,0 @@
-Please enter your username:
-Welcome, admin!
-Logged out. Goodbye!
-Only logged-in users can perform this task.

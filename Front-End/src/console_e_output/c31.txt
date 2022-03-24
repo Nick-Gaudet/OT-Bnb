@@ -3,4 +3,8 @@ Please enter a command. (Type help for a list of commands):
 Enter UserName:  
 User Found, Logging In...
 Please enter a command. (Type help for a list of commands): 
+Enter Rental Unit ID: 
+Enter # of nights: 
+This unit is currently being rented!
+Please enter a command. (Type help for a list of commands): 
 User logged out. Thank you for using OT-Bnb!

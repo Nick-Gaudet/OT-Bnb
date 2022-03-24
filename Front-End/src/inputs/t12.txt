@@ -1,5 +1,7 @@
 login
 NickG
 create
-overfifteenchars
+overtenchars
+shorter
+FS
 logout

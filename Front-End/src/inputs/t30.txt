@@ -3,12 +3,14 @@ NickG
 rent
 RNT00000
 1
-Yes
 logout
 login
 rentuser
 rent
 RNT00001
 1
-Yes
+logout
+login
+postuser
+rent
 logout

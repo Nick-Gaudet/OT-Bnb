@@ -1,6 +1,0 @@
-Please enter your username:
-Welcome, admin!
-Enter city name:
-Enter rental price (in dollars):
-Enter # bedrooms:
-Maximum # of rooms is 9.

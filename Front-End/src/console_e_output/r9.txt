@@ -1,3 +1,0 @@
-Please enter your username:
-Welcome, admin!
-There is already a user logged in.

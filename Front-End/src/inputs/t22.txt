@@ -4,8 +4,4 @@ post
 Overfifteencharacters
 15.00
 2
-search
-Toronto
-999.99
-7
 logout

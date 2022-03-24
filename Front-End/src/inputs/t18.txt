@@ -5,3 +5,4 @@ nonadmin
 logout
 login
 nonadmin
+no

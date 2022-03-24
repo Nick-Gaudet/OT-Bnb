@@ -15,6 +15,7 @@ public class main {
     private static User currentUser;
     private static RentalUnit rentalUnitForTransactionInfo;
     private static Scanner scan = new Scanner(System.in);
+    private static boolean postFlag = false;
 
     public static void help(){
         System.out.print("List of commands:\n" +
@@ -242,6 +243,11 @@ public class main {
         System.out.println("Enter # of nights: ");
         String numNights = scan.nextLine();
 
+        if (Integer.parseInt(numNights) > 14){
+            System.out.println("Max rental length is 14 days. Defaulting to 14 days.");
+            numNights = "14";
+        }
+
         if(rentalUnitsMap.containsKey(unitID)){ // if the rental unit exist
             RentalUnit unitToRent = rentalUnitsMap.get(unitID);
             unitToRent.setRentFlag(true);
@@ -378,11 +384,14 @@ public class main {
 
                 case "post":
 
-                    if(loggedin){
+                    if(loggedin && !postFlag){
                         if(!currentUser.getPrivileges().equals("RS")){
                             transCode = "03";
                             post();
                             transactions.add(makeTransactionString(transCode,rentalUnitForTransactionInfo,currentUser));
+                        }
+                        else if(!postFlag){
+                            System.out.println("Only one post may be made per session!");
                         }
                         else{
                             System.out.println("Only post-standard or full-standard(Admin) are allowed to post!");

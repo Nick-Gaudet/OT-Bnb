@@ -3,5 +3,4 @@ NickG
 rent
 RNT00002
 1
-Y
 logout

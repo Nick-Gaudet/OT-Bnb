@@ -2,7 +2,7 @@ login
 NickG
 create
 NickGTwo
-admin
+FS
 delete
 NickGTwo
 post
@@ -14,7 +14,6 @@ Oshawa
 15.00
 2
 rent
-AAAA0000
+RNT00000
 1
-Y
 logout

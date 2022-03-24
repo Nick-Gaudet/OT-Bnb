@@ -1,4 +1,0 @@
-Please enter your username:
-Welcome, admin!
-Enter rental ID:
-This unit is currently being rented.

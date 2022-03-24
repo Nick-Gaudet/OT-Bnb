@@ -1,0 +1,14 @@
+Welcome to OT-Bnb. Please Login.
+Please enter a command. (Type help for a list of commands): 
+Enter UserName:  
+User Found, Logging In...
+Please enter a command. (Type help for a list of commands): 
+Enter User Name: 
+Please enter a command. (Type help for a list of commands): 
+User logged out. Thank you for using OT-Bnb!
+Please enter a command. (Type help for a list of commands): 
+Enter UserName:  
+User Not Found!
+Would you like to create an account? 
+Redirecting...
+Unable to Login! You can not use OT-BnB without having an account! Exiting...
