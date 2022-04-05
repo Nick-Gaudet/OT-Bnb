@@ -1,0 +1,12 @@
+Welcome to OT-Bnb. Please Login.
+Please enter a command. (Type help for a list of commands): 
+Enter UserName:  
+User Found, Logging In...
+Please enter a command. (Type help for a list of commands): 
+Enter a city: 
+Enter a rental price: 
+Enter the number of bedrooms: 
+Maximum amount per night is $999.99
+Max number of bedrooms is 9! Defaulting...
+Please enter a command. (Type help for a list of commands):
+User logged out. Thank you for using OT-Bnb!

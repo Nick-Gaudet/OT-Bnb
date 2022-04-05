@@ -1,0 +1,7 @@
+login
+NickG
+rent
+RNT00006
+14
+Y
+logout

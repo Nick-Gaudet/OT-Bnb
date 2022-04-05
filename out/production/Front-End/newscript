@@ -1,0 +1,12 @@
+#!/bin/bash
+# THIS WAS WORKING PROPERLY, THEN IT DECIDED NOT TO, IF IT DOESNT WORK, ITS BECAUSE NickG ACCOUNT IS NOT IN ACCOUNTS.txt, ADD IT via RUNNING PROGRAM!
+#pick directory for the loop
+FILES="inputs/*.txt"
+num=0
+for f in $FILES # loop through each file
+do
+  {
+    java main accounts.txt rentalunits.txt < "$f"     #execute inputfiles into java program and crate output files
+  } > "console_acc_output/consoleout_$((num++)).txt" ## store the stdout
+
+done

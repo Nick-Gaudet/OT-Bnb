@@ -1,0 +1,8 @@
+login
+NickG
+delete
+nonadmin
+logout
+login
+nonadmin
+no

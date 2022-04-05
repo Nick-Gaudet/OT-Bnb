@@ -1,0 +1,12 @@
+login
+NickG
+create
+rentuser
+RS
+create
+postuser
+PS
+create
+newadmin
+FS
+logout

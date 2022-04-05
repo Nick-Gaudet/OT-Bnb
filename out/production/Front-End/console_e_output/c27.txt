@@ -1,0 +1,10 @@
+Welcome to OT-Bnb. Please Login.
+Please enter a command. (Type help for a list of commands): 
+Enter UserName:  
+User Found, Logging In...
+Please enter a command. (Type help for a list of commands): 
+Enter a city: 
+Enter a rental price: 
+Enter the number of bedrooms: 
+RNT00001_NickG   _Oshawa         _2_000015.00_T_14
+User logged out. Thank you for using OT-Bnb!

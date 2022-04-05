@@ -1,0 +1,4 @@
+login
+nonadmin
+delete
+logout

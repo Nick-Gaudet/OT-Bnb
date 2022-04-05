@@ -1,0 +1,17 @@
+login
+NickG
+post
+Oshawa
+15.00
+2
+logout
+login
+postuser
+rent
+RNT00002
+1
+logout
+login
+rentuser
+post
+logout

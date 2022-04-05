@@ -1,0 +1,5 @@
+03 NickG           FS RNT00000 Oshawa          2 000015.00 00
+00 NickG           FS                          0 000000.00 00
+03 postuser        PS RNT00001 Toronto         2 000015.00 00
+00 postuser        PS                          0 000000.00 00
+00 rentuser        RS                          0 000000.00 00

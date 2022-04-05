@@ -1,0 +1,16 @@
+login
+NickG
+rent
+RNT00000
+1
+logout
+login
+rentuser
+rent
+RNT00001
+1
+logout
+login
+postuser
+rent
+logout
