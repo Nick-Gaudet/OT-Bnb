@@ -24,16 +24,6 @@ class mainTest {
     }
 
     @Test
-    public void loopCoverageZero() throws IOException {
-        System.setIn(new ByteArrayInputStream("logout".getBytes()));
-
-        main.main(new String[]{"accounts.txt", "transactions.txt"});
-
-        assertEquals("Welcome to OT-Bnb. Please Login.\r\n" +
-                "User logged out. Thank you for using OT-Bnb!\r\n", testOut.toString());
-    }
-
-    @Test
     public void loopCoverageOnce() throws IOException {
         System.setIn(new ByteArrayInputStream("login\nKevinCht\nlogout".getBytes()));
 
