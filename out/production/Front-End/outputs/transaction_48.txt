@@ -1,0 +1,4 @@
+03 KevinCht FS RNT00000 Montreal        3 000099.99 14
+01 KevinCht FS                          0 000000.00 00
+02 KevinCht FS                          0 000000.00 00
+00 KevinCht FS                          0 000000.00 00

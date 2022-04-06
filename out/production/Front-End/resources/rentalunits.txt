@@ -1,23 +1,2 @@
-RNT00000_NickG   _Toronto        _4_000999.99_T_14
-RNT00001_NickG   _Oshawa         _2_000015.00_F_14
-RNT00002_NickG   _Oshawa         _9_000999.99_T_14
-RNT00003_NickG   _Oshawa         _2_000015.00_T_14
-RNT00004_NickG   _Overfifteenchar_2_000015.00_F_14
-RNT00005_NickG   _Oshawa         _2_000015.00_F_14
-RNT00006_NickG   _Oshawa         _9_000015.00_T_14
-RNT00007_NickG   _Oshawa         _9_000015.00_F_14
-RNT00008_NickG   _Oshawa         _2_000015.00_F_14
-RNT00009_NickG   _New York       _9_000999.99_F_14
-RNT00010_NickG   _Oshawa         _2_000015.00_F_14
-RNT00011_NickG   _Oshawa         _2_000015.00_F_14
-RNT00012_NickG   _Oshawa         _9_000999.99_F_14
-RNT00013_NickG   _Oshawa         _2_000015.00_F_14
-RNT00014_NickG   _Overfifteenchar_2_000015.00_F_14
-RNT00015_NickG   _Oshawa         _2_000015.00_F_14
-RNT00016_NickG   _Oshawa         _9_000015.00_F_14
-RNT00017_NickG   _Oshawa         _9_000015.00_F_14
-RNT00018_NickG   _Oshawa         _2_000015.00_F_14
-RNT00019_NickG   _New York       _9_000999.99_F_14
-RNT00020_NickGTwo_Oshawa         _2_000015.00_F_14
-RNT00021_KevinCht_Miami          _4_000150.00_F_14
-RNT00022_KevinCht_Montreal       _3_000099.99_F_14
+RNT00000_KevinCht_Montreal       _3_000099.99_F_14
+RNT00001_KevinCht_Montreal       _3_000099.99_F_14

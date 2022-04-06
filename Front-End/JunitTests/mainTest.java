@@ -63,10 +63,11 @@ class mainTest {
                 "Please enter a command. (Type help for a list of commands):\r\n" +
                 "User logged out. Thank you for using OT-Bnb!\r\n", testOut.toString());
     }
+
     @Test
     public void loopCoverageManyTimes() throws IOException {
         System.setIn(new ByteArrayInputStream(("login\nKevinCht\nRent\nRNT00000\n2\npost\nMontreal\n" +
-                "99.99\n3\nlogout").getBytes()));
+                "99.99\n3\ncreate\nJoshL\nPS\ndelete\nlogout").getBytes()));
 
         main.main(new String[]{"accounts.txt", "transactions.txt"});
 
@@ -81,6 +82,12 @@ class mainTest {
                 "Enter a city:\r\n" +
                 "Enter a rental price:\r\n" +
                 "Enter the number of bedrooms:\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "Enter username for account:\r\n" +
+                "Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS: \r\n"+
+                "User Created Successfully!\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "You don't have privileges!\r\n" +
                 "Please enter a command. (Type help for a list of commands):\r\n" +
                 "User logged out. Thank you for using OT-Bnb!\r\n", testOut.toString());
     }
