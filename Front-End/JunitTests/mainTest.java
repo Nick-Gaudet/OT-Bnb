@@ -52,7 +52,7 @@ class mainTest {
 
 
     @Test
-    public void loginNoUserYesCreate() throws IOException {
+    public void loginNoUserCreateFS() throws IOException {
         System.setIn(new ByteArrayInputStream("a\nyes\nThomasMc\nFS".getBytes()));
 
         main.login("accounts.txt");
@@ -64,6 +64,35 @@ class mainTest {
                 "Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS: \r\n" +
                 "User Created Successfully!\r\n", testOut.toString());
     }
+
+    @Test
+    public void loginNoUserCreateRS() throws IOException {
+        System.setIn(new ByteArrayInputStream("a\nyes\nThomasMR\nRS".getBytes()));
+
+        main.login("accounts.txt");
+
+        assertEquals("Enter UserName:\r\n" +
+                "User Not Found!\r\n" +
+                "Would you like to create an account?\r\n" +
+                "Enter username for account:\r\n" +
+                "Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS: \r\n" +
+                "User Created Successfully!\r\n", testOut.toString());
+    }
+
+    @Test
+    public void loginNoUserCreatePS() throws IOException {
+        System.setIn(new ByteArrayInputStream("a\nyes\nThomasMP\nPS".getBytes()));
+
+        main.login("accounts.txt");
+
+        assertEquals("Enter UserName:\r\n" +
+                "User Not Found!\r\n" +
+                "Would you like to create an account?\r\n" +
+                "Enter username for account:\r\n" +
+                "Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS: \r\n" +
+                "User Created Successfully!\r\n", testOut.toString());
+    }
+
     @Test
     public void loginYesUser() throws IOException {
         System.setIn(new ByteArrayInputStream("ThomasMc\n".getBytes()));
