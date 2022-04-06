@@ -39,72 +39,38 @@ class mainTest {
 
     @Test
     public void loginNoUserNoCreate() throws IOException {
-        InputStream stdin = System.in;
-        System.setIn(new ByteArrayInputStream("a\nno\n".getBytes()));
 
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(byteArrayOutputStream);
-        PrintStream stdout = System.out;
-        System.setOut(ps);
+        System.setIn(new ByteArrayInputStream("a\nno\n".getBytes()));
 
         main.login("accounts.txt");
 
-        System.setIn(stdin);
-        System.setOut(stdout);
-
-        String outputText = byteArrayOutputStream.toString();
-        String key = "output:";
-        String output = outputText.substring(outputText.indexOf(key) + key.length()).trim();
-        assertEquals(output, "UserName:\r\n" +
-                                    "User Not Found!\r\n" +
-                                    "Would you like to create an account?\r\n" +
-                                    "Redirecting...");
+        assertEquals("Enter UserName:\r\n" +
+                "User Not Found!\r\n" +
+                "Would you like to create an account?\r\n" +
+                "Redirecting...\r\n", testOut.toString());
     }
+
 
     @Test
     public void loginNoUserYesCreate() throws IOException {
-        InputStream stdin = System.in;
         System.setIn(new ByteArrayInputStream("a\nyes\nThomasMc\nFS".getBytes()));
-
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(byteArrayOutputStream);
-        PrintStream stdout = System.out;
-        System.setOut(ps);
 
         main.login("accounts.txt");
 
-        System.setIn(stdin);
-        System.setOut(stdout);
-
-        String outputText = byteArrayOutputStream.toString();
-        String key = "output:";
-        String output = outputText.substring(outputText.indexOf(key) + key.length()).trim();
-        assertEquals(output, "UserName:\r\n" +
+        assertEquals("Enter UserName:\r\n" +
                 "User Not Found!\r\n" +
                 "Would you like to create an account?\r\n" +
                 "Enter username for account:\r\n" +
                 "Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS: \r\n" +
-                "User Created Successfully!");
+                "User Created Successfully!\r\n", testOut.toString());
     }
     @Test
     public void loginYesUser() throws IOException {
-        InputStream stdin = System.in;
         System.setIn(new ByteArrayInputStream("ThomasMc\n".getBytes()));
-
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(byteArrayOutputStream);
-        PrintStream stdout = System.out;
-        System.setOut(ps);
 
         main.login("accounts.txt");
 
-        System.setIn(stdin);
-        System.setOut(stdout);
-
-        String outputText = byteArrayOutputStream.toString();
-        String key = "output:";
-        String output = outputText.substring(outputText.indexOf(key) + key.length()).trim();
-        assertEquals(output, "UserName:\r\n" +
-                                    "User Found, Logging In...");
+        assertEquals("Enter UserName:\r\n" +
+                                    "User Found, Logging In...\r\n", testOut.toString());
     }
 }
