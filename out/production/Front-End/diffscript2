@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd inputs
+for f in *.out *.txt;
+do
+    diff -u "$f" "$f" > "outputdiff.txt"
+done

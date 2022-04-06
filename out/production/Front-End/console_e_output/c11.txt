@@ -1,0 +1,18 @@
+Welcome to OT-Bnb. Please Login.
+Please enter a command. (Type help for a list of commands): 
+Enter UserName:  
+User Found, Logging In...
+Please enter a command. (Type help for a list of commands): 
+Enter username for account: 
+Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS: 
+User Created Successfully!
+Please enter a command. (Type help for a list of commands): 
+Enter username for account: 
+Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS: 
+User Created Successfully!
+Please enter a command. (Type help for a list of commands): 
+Enter username for account: 
+Enter user type (Full Standard - FS, Rent Standard - RS, Post Standard - PS: 
+User Created Successfully!
+Please enter a command. (Type help for a list of commands): 
+User logged out. Thank you for using OT-Bnb!
