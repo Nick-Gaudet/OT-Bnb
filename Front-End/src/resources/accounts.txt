@@ -1,15 +1,1 @@
-<<<<<<< HEAD
-NickG     _FS
-KevinCC   _RS
-KevinC    _FS
-nonadmin  _RS
-=======
-NickG   _FS
-KevinCC _RS
-KevinC  _FS
-rentuser_RS
-tenorless_RS
-postuser_PS
-newadmin_FS
-NickGTwo_admin
->>>>>>> f9d25244b9e85c71b1ecb0a081e1099b2ff1df46
+KevinCht_FS
