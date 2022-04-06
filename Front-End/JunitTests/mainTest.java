@@ -24,20 +24,6 @@ class mainTest {
     }
 
     @Test
-    public void testCase1() throws IOException {
-        System.setIn(new ByteArrayInputStream("login\nKevinCht\nlogout".getBytes()));
-
-        main.main(new String[]{"accounts.txt", "transactions.txt"});
-
-        assertEquals("Welcome to OT-Bnb. Please Login.\r\n" +
-                "Please enter a command. (Type help for a list of commands):\r\n" +
-                "Enter UserName:\r\n" +
-                "User Found, Logging In...\r\n" +
-                "Please enter a command. (Type help for a list of commands):\r\n" +
-                "User logged out. Thank you for using OT-Bnb!\r\n", testOut.toString());
-    }
-
-    @Test
     public void loginNoUserNoCreate() throws IOException {
 
         System.setIn(new ByteArrayInputStream("a\nno\n".getBytes()));
