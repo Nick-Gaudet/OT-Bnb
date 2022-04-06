@@ -24,6 +24,68 @@ class mainTest {
     }
 
     @Test
+    public void loopCoverageZero() throws IOException {
+        System.setIn(new ByteArrayInputStream("logout".getBytes()));
+
+        main.main(new String[]{"accounts.txt", "transactions.txt"});
+
+        assertEquals("Welcome to OT-Bnb. Please Login.\r\n" +
+                "User logged out. Thank you for using OT-Bnb!\r\n", testOut.toString());
+    }
+
+    @Test
+    public void loopCoverageOnce() throws IOException {
+        System.setIn(new ByteArrayInputStream("login\nKevinCht\nlogout".getBytes()));
+
+        main.main(new String[]{"accounts.txt", "transactions.txt"});
+
+        assertEquals("Welcome to OT-Bnb. Please Login.\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "Enter UserName:\r\n" +
+                "User Found, Logging In...\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "User logged out. Thank you for using OT-Bnb!\r\n", testOut.toString());
+    }
+
+    @Test
+    public void loopCoverageTwice() throws IOException {
+        System.setIn(new ByteArrayInputStream("login\nKevinCht\nRent\nRNT00000\n2\nlogout".getBytes()));
+
+        main.main(new String[]{"accounts.txt", "transactions.txt"});
+
+        assertEquals("Welcome to OT-Bnb. Please Login.\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "Enter UserName:\r\n" +
+                "User Found, Logging In...\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "Enter Rental Unit ID:\r\n" +
+                "Enter # of nights:\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "User logged out. Thank you for using OT-Bnb!\r\n", testOut.toString());
+    }
+    @Test
+    public void loopCoverageManyTimes() throws IOException {
+        System.setIn(new ByteArrayInputStream(("login\nKevinCht\nRent\nRNT00000\n2\npost\nMontreal\n" +
+                "99.99\n3\nlogout").getBytes()));
+
+        main.main(new String[]{"accounts.txt", "transactions.txt"});
+
+        assertEquals("Welcome to OT-Bnb. Please Login.\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "Enter UserName:\r\n" +
+                "User Found, Logging In...\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "Enter Rental Unit ID:\r\n" +
+                "Enter # of nights:\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "Enter a city:\r\n" +
+                "Enter a rental price:\r\n" +
+                "Enter the number of bedrooms:\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "User logged out. Thank you for using OT-Bnb!\r\n", testOut.toString());
+    }
+
+    @Test
     public void loginNoUserNoCreate() throws IOException {
 
         System.setIn(new ByteArrayInputStream("a\nno\n".getBytes()));
