@@ -21,3 +21,4 @@ RNT00019_NickG   _New York       _9_000999.99_F_14
 RNT00020_NickGTwo_Oshawa         _2_000015.00_F_14
 RNT00021_KevinCht_Miami          _4_000150.00_F_14
 RNT00022_KevinCht_Montreal       _3_000099.99_F_14
+RNT00023_KevinCht_Montreal       _3_000099.99_F_14

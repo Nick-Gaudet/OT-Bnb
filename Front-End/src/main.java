@@ -57,62 +57,85 @@ public class main {
         }
     }
     public static void post() throws IOException {
+        int count = 0;
         String city,price,bedrooms;
+        count++; // 1
         System.out.println("Enter a city:");
+        count++; // 2
         city = scan.nextLine();
-
+        count++; // 3
         System.out.println("Enter a rental price:");
+        count++; // 4
         price = scan.nextLine();
-
+        count++; // 5
         System.out.println("Enter the number of bedrooms:");
+        count++; // 6
         bedrooms = scan.nextLine();
+        count++; // 7
 
 
         //CONSTRAINTS
 
         if (Float.parseFloat(price) > 999.99){
             price = "999.99";
+            count++;
             System.out.println("Maximum amount per night is $999.99");
+            count++;
         }
 
         if (city.length() > 15){
             city = city.substring(0,15);
+            count++;
             System.out.println("City name too long! Shortening to " + city);
+            count++;
         }
 
         if (Integer.parseInt(bedrooms) > 9){
             bedrooms = "9";
+            count++;
             System.out.println("Max number of bedrooms is 9! Defaulting...");
+            count++;
         }
 
 
         //GET NUMBER OF UNITS, 1 UNIT is 1 LINE in TEXT FILE
         BufferedReader reader = new BufferedReader(new FileReader("resources/rentalunits.txt"));
+        count++; // 8
         int units = 0;
+        count++; // 9
         while (reader.readLine() != null) units++;
+        count++; // 10;
         reader.close();
+        count++; // 11
 
         String iD = String.format("RNT%05d", units);
+        count++; // 12
 
         //create the rental unit for the post being made
         RentalUnit r = new RentalUnit(iD,currentUser.getUserName(), city, Integer.parseInt(bedrooms), Float.parseFloat(price), false, 14);
+        count++; // 13
         rentalUnitForTransactionInfo = r;
-
+        count++;// 14
 
         File file = new File("resources/rentalunits.txt");
+        count++; // 15
         BufferedWriter bw = null;
-        if(!file.exists()){ // if the file doesnt exist yet
+        count++;// 16
+        if(!file.exists()) { // if the file doesnt exist yet
             file.createNewFile();
+            count++;
         }
-
         FileWriter fw = new FileWriter(file.getAbsolutePath(),true);
+        count++; // 17
         bw = new BufferedWriter(fw);
-
+        count++; // 18
         bw.write(r.toString()); // write the rental unit details to the file
+        count++; // 19
         bw.write("\n");
-
+        count++; // 20
         bw.close();
-
+        count++; // 21
+        System.out.println("Statements:" + count);
     }
     public static HashMap getUserAccountsMap(){
         return userAccountsFromFile;
