@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +17,6 @@ class mainTest {
         System.setIn(systemIn);
     }
 
-
     @AfterEach
     public void restoreSystemInputOutput() {
         System.setOut(systemOut);
@@ -27,7 +25,7 @@ class mainTest {
 
     @Test
     public void testCase1() throws IOException {
-        System.setIn(new ByteArrayInputStream("login\nNickG\nlogout\n".getBytes()));
+        System.setIn(new ByteArrayInputStream("login\nKevinCht\nlogout".getBytes()));
 
         main.main(new String[]{"accounts.txt", "transactions.txt"});
 
