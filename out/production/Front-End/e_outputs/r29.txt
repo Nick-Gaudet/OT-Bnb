@@ -1,0 +1,3 @@
+04 NickG      FS                          0 000000.00 00
+03 NickG      FS RNT00007 New York        9 000999.99 14
+00 NickG      FS                          0 000000.00 00

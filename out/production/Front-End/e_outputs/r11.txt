@@ -1,0 +1,4 @@
+01 rentuser   RS                          0 000000.00 00
+01 postuser   RS                          0 000000.00 00
+01 newadmin   FS                          0 000000.00 00
+00 NickG      FS                          0 000000.00 00

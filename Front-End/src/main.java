@@ -58,13 +58,13 @@ public class main {
     }
     public static void post() throws IOException {
         String city,price,bedrooms;
-        System.out.println("Enter a city: ");
+        System.out.println("Enter a city:");
         city = scan.nextLine();
 
-        System.out.println("Enter a rental price: ");
+        System.out.println("Enter a rental price:");
         price = scan.nextLine();
 
-        System.out.println("Enter the number of bedrooms: ");
+        System.out.println("Enter the number of bedrooms:");
         bedrooms = scan.nextLine();
 
 
@@ -197,8 +197,9 @@ public class main {
             e.printStackTrace();
         }
     }
-    public static boolean login(){  //searches username database, returns true if username found
-        System.out.println("Enter UserName:  ");
+    public static boolean login(String userAccountsFile){  //searches username database, returns true if username found
+        loadUserAccounts(userAccountsFile);
+        System.out.println("Enter UserName:");
         String userName = scan.nextLine();
         if (getUserAccountsMap().containsKey(userName)){
             System.out.println("User Found, Logging In...");
@@ -209,7 +210,7 @@ public class main {
             System.out.println("User Not Found!");
             String answer= "";
 
-            System.out.println("Would you like to create an account? ");
+            System.out.println("Would you like to create an account?");
             answer = scan.nextLine();
 
             if (answer.equalsIgnoreCase("no")){
@@ -238,9 +239,9 @@ public class main {
         return false;
     }
     public static void rent(){  //allows for rent-standard and admin accounts to rent listing
-        System.out.println("Enter Rental Unit ID: ");
+        System.out.println("Enter Rental Unit ID:");
         String unitID = scan.nextLine();
-        System.out.println("Enter # of nights: ");
+        System.out.println("Enter # of nights:");
         String numNights = scan.nextLine();
 
         if (Integer.parseInt(numNights) > 14){
@@ -261,13 +262,13 @@ public class main {
     }
 
     public static void search(){  //allows for rent-standard and admin accounts to rent listing
-        System.out.println("Enter a city: ");
+        System.out.println("Enter a city:");
         String cityFilter = scan.nextLine();
 
-        System.out.println("Enter a rental price: ");
+        System.out.println("Enter a rental price:");
         String rentalFilter = scan.nextLine();
 
-        System.out.println("Enter the number of bedrooms: ");
+        System.out.println("Enter the number of bedrooms:");
         String numOfBedroomsFilter = scan.nextLine();
         for(int i = 0; i < rentalUnits.size(); i++){
             RentalUnit unit = rentalUnits.get(i);
@@ -278,7 +279,7 @@ public class main {
     }
 
     public static void delete(){ // deletes the user from file and any units correlated, updates files as well
-        System.out.println("Enter User Name: ");
+        System.out.println("Enter User Name:");
         String userName = scan.nextLine();
 
         // delete the user name from the file
@@ -292,13 +293,13 @@ public class main {
     public static void create(){ // creates a new user account, updates the file as well
 
         String userType;
-        System.out.println("Enter username for account: ");
+        System.out.println("Enter username for account:");
         String user = scan.nextLine();
 
         if(!doesUsernameExist(user)) {
 
             while (user.length() > 10) {
-                System.out.println("Enter a shorter username: ");
+                System.out.println("Enter a shorter username:");
                 user = scan.nextLine();
             }
 
@@ -322,7 +323,6 @@ public class main {
     public static void main(String[] args) throws IOException {
         String userAccountsFile = args[0];
         String rentalUnitsFile = args[1];
-        loadUserAccounts(userAccountsFile);
         loadRentalUnits(rentalUnitsFile);
         String comm;
         String transCode;
@@ -337,7 +337,7 @@ public class main {
 
         //by this point currentUser is set for the current transactions
         while (on){
-            System.out.println("Please enter a command. (Type help for a list of commands): ");
+            System.out.println("Please enter a command. (Type help for a list of commands):");
             comm = scan.nextLine();
             switch(comm.toLowerCase()){
                 case "login":
@@ -345,7 +345,7 @@ public class main {
                         System.out.println("There is already a user logged in!");
                         break;
                     }
-                    if(!login()){
+                    if(!login(userAccountsFile)){
                         System.out.println("Unable to Login! You can not use OT-BnB without having an account! Exiting...");
                         System.exit(1);
                     }
