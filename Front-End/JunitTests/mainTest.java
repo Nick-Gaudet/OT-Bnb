@@ -22,7 +22,10 @@ class mainTest {
         System.setOut(systemOut);
         System.setIn(systemIn);
     }
-
+/*
+* Loop coverage, enters main loop once, twice, and many times by calling
+* functions an appropriate amount of times
+* */
     @Test
     public void loopCoverageOnce() throws IOException {
         System.setIn(new ByteArrayInputStream("login\nKevinCht\nlogout".getBytes()));
@@ -82,6 +85,12 @@ class mainTest {
                 "User logged out. Thank you for using OT-Bnb!\r\n", testOut.toString());
     }
 
+    /*
+    * These tests are decision coverage for login(), testing the following decisions:
+    * is the user found in the accounts file
+    * if not, does the user want to create an account
+    * if so, which type of account should be created
+    * */
     @Test
     public void loginNoUserNoCreate() throws IOException {
 
