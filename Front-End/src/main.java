@@ -56,7 +56,7 @@ public class main {
             e.printStackTrace();
         }
     }
-    public static void post() throws IOException {
+    public static void post() throws IOException { // modified for code injection statement coverage testing
         int count = 0;
         String city,price,bedrooms;
         count++; // 1
@@ -123,7 +123,6 @@ public class main {
         count++;// 16
         if(!file.exists()) { // if the file doesnt exist yet
             file.createNewFile();
-            count++;
         }
         FileWriter fw = new FileWriter(file.getAbsolutePath(),true);
         count++; // 17

@@ -148,14 +148,14 @@ class mainTest {
                                     "User Found, Logging In...\r\n", testOut.toString());
     }
 
-    /*STATEMENT COVERAGE FOR POST - FULL COVERAGE (!fileExist + constraints) = 28
-    21 with no constraints and file exists (normal coverage)
+    /*STATEMENT COVERAGE FOR POST
+    FULL COVERAGE (+ constraints) = 27
+    21 with no constraints(partial coverage)
     21 + 2 * constraints (i.e 23 reached with 1 constraint)
-    MIN expected 21, at most 28
+    MIN expected 21, at MAX 27
     * */
     @Test
-
-    public void statementCoverage() throws IOException{
+    public void partialStatementCoverage() throws IOException{
         System.setIn(new ByteArrayInputStream(("login\nNickG\npost\nWhitby\n150.50\n3\nlogout").getBytes()));
 
         main.main(new String[]{"accounts.txt", "transactions.txt"});
@@ -170,6 +170,30 @@ class mainTest {
                 "Enter a rental price:\r\n" +
                 "Enter the number of bedrooms:\r\n" +
                 "Statements:21\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "User logged out. Thank you for using OT-Bnb!\r\n", testOut.toString());
+    }
+
+    @Test
+    public void fullStatementCoverage() throws IOException{
+        System.setIn(new ByteArrayInputStream(("login\nNickG\npost\nWhitbyButItIsLongerThanTheCity\n" +
+                "1050.50\n30\nlogout").getBytes()));
+
+        main.main(new String[]{"accounts.txt", "transactions.txt"});
+
+
+        assertEquals("Welcome to OT-Bnb. Please Login.\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "Enter UserName:\r\n" +
+                "User Found, Logging In...\r\n" +
+                "Please enter a command. (Type help for a list of commands):\r\n" +
+                "Enter a city:\r\n" +
+                "Enter a rental price:\r\n" +
+                "Enter the number of bedrooms:\r\n" +
+                "Maximum amount per night is $999.99\r\n"+
+                "City name too long! Shortening to WhitbyButItIsLo\r\n" +
+                "Max number of bedrooms is 9! Defaulting...\r\n"+
+                "Statements:27\r\n" +
                 "Please enter a command. (Type help for a list of commands):\r\n" +
                 "User logged out. Thank you for using OT-Bnb!\r\n", testOut.toString());
     }
