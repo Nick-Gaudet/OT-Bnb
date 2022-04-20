@@ -1,0 +1,20 @@
+#!/bin/bash
+
+INPUTFILES="inputs/*.txt"
+
+for f in $INPUTFILES # loop through each file
+do
+  {
+    java main accounts.txt rentalunits.txt < "$f"     #execute inputfiles into java program and create output files
+  }
+
+done
+
+TRANSFILES="outputs/*.txt"
+
+for f in $TRANSFILES #loop through all the created transaction files from the day and concat to single file
+do
+{
+    cat "$f" >> "mergedTransactions.txt"
+}
+done
