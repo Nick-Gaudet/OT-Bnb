@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+//If tests do not work, try them individually, using the working directory
+// (path to OT-Bnb folder)/Front-End/src
 class mainTest {
 
     private final InputStream systemIn = System.in;
