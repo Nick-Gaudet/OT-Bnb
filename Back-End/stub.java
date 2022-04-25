@@ -6,7 +6,7 @@ import java.lang.StringBuilder;
 
 public class stub {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("../Front-End/inputs/mergedTransactions.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("../Front-End/src/inputs/mergedTransactions.txt"));
         StringBuilder sb = new StringBuilder();
         File file = new File("transactionTable.csv");
         if (file.exists()){
