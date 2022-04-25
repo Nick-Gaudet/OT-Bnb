@@ -1,0 +1,6 @@
+#!/bin/bash
+
+count=5
+for i in $(seq $count); do
+    sh dailyscript
+done
