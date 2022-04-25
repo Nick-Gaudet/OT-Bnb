@@ -7,8 +7,12 @@ import java.lang.StringBuilder;
 public class stub {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("../Front-End/inputs/mergedTransactions.txt"));
+        StringBuilder sb = new StringBuilder();
+        File file = new File("transactionTable.csv");
+        if (file.exists()){
+            sb.append("TransactionType,Username,Permissions,TransactionID,Location,NumRooms,Price,NumNights\n");
+        }
         try(PrintWriter writer = new PrintWriter("transactionTable.csv")){
-            StringBuilder sb = new StringBuilder();
             while(line != null){
                 String line = br.readLine();
                 sb.append(line.substring(0,3));
